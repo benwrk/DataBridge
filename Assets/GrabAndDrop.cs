@@ -5,10 +5,13 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class GrabAndDrop : MonoBehaviour {
 
+
+
+    
     private GameObject grabbedObject;
-    private float grabbedObjectSize;
-    private RigidbodyFirstPersonController controller;
-    private static readonly Vector3 adjustTheHeightOfTheObject = new Vector3(-0.5f, -0.5f, 0);
+   // private float grabbedObjectSize;
+    private RigidbodyFirstPersonController controller; // being used to freeze the player movements while observing
+    //private static readonly Vector3 adjustTheHeightOfTheObject = new Vector3(-0.25f, 0.5f, 0); // the point at whihc the object is being held while observing relative to the camera
 
     void Start()
     {
@@ -18,10 +21,10 @@ public class GrabAndDrop : MonoBehaviour {
     //function that gives us the object that we are looking at
     GameObject GetMouseHoverObject (float range)
     {
-        Vector3 position = gameObject.transform.position;
+        Vector3 position =  Camera.main.transform.position; // check it gameObject.transform.position + new Vector3(0, 1, 0) ;
         RaycastHit raycastHit;
         Vector3 target = position + Camera.main.transform.forward * range;
-        if (Physics.Linecast(position, target, out raycastHit))
+        if (Physics.Linecast(position, target, out raycastHit) && raycastHit.transform.gameObject.tag == "Pickable")
         {
             return raycastHit.collider.gameObject;
         }
@@ -30,12 +33,7 @@ public class GrabAndDrop : MonoBehaviour {
 
     }
 
-    //void changeIsGrabbing()
-    //{
-
-
-    //    gameManager.isGrabbing = true;
-    //}
+   
 
 
 
@@ -47,15 +45,16 @@ public class GrabAndDrop : MonoBehaviour {
             return;
 
         grabbedObject = grabObject;
-        grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
-        grabObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+       // grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude; // used to make the object float at a certain distance from the camera depending on the size of the object 
+        grabObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation; // the object while observing should not rotate (freeze the rotation)
+
+        //freeze the movements of the player while obsering the object
         controller.movementSettings.ForwardSpeed = 0;
         controller.movementSettings.BackwardSpeed = 0;
         controller.movementSettings.StrafeSpeed = 0;
         controller.movementSettings.JumpForce = 0;
 
-
-
+        //by making it true, we cant make the objects float , check Game Manager for further info
         GameStates.isGrabbing = true;
         
     }
@@ -71,26 +70,27 @@ public class GrabAndDrop : MonoBehaviour {
 
     void DropObject()
     {
-       
+
         if (grabbedObject == null) // if nothing is grabbed then 
+        {
             return;
-
-
-
+        }
 
         if (grabbedObject.GetComponent<Rigidbody>() != null) // if the grabbed object has a rigid body, not null 
         {
-            grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero; // TODO
-            grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero; // while dropping the object , they should be released with zero velocity (basically you cant throw an object in some direction)
+            grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; // un-freeze the rotation when the objct is dropped
+
+            //un-freeze the movements of the player while obsering the object
             controller.movementSettings.ForwardSpeed = Constants.DefaultForwardSpeed;
             controller.movementSettings.BackwardSpeed = Constants.DefaultBackwardSpeed;
             controller.movementSettings.StrafeSpeed = Constants.DefaultStrafeSpeed;
             controller.movementSettings.JumpForce = Constants.DefaultJumpForce;
 
-            GameStates.isGrabbing = false; 
-
-
+            //by making it false, we can make the objects float , check Game Manager for further info
+            GameStates.isGrabbing = false;
         }
+
         grabbedObject = null;
 
 
@@ -105,7 +105,7 @@ public class GrabAndDrop : MonoBehaviour {
         {
             if (grabbedObject == null) //if havent grabbed any object, grab one
             {
-                tryGrabObject(GetMouseHoverObject(4));
+                tryGrabObject(GetMouseHoverObject(2));
             }
             else
             {
@@ -115,8 +115,11 @@ public class GrabAndDrop : MonoBehaviour {
 
         if (grabbedObject != null)//if we have grabbed an object , change its position to in front of us
         {
-            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * (grabbedObjectSize) + (Vector3.up - adjustTheHeightOfTheObject );
-            grabbedObject.transform.position = newPosition  ;
+            //Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * (grabbedObjectSize) + (Vector3.up - adjustTheHeightOfTheObject );
+          
+ 
+            grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1)); ;
         }
 	}
 }
+  
