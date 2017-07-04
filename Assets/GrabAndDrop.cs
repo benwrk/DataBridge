@@ -7,7 +7,10 @@ public class GrabAndDrop : MonoBehaviour {
 
 
 
-    private float timeLerp = 50f;
+    private Vector3 initialLocation;
+    Vector3 initialRotation;
+    private float speedOfRotation = 100;
+    
     
      
     private GameObject grabbedObject;
@@ -51,6 +54,12 @@ public class GrabAndDrop : MonoBehaviour {
         grabbedObject = grabObject;
        // grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude; // used to make the object float at a certain distance from the camera depending on the size of the object 
         grabObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation; // the object while observing should not rotate (freeze the rotation)
+
+
+        initialLocation = grabbedObject.transform.position;
+        initialRotation = new Vector3(grabbedObject.transform.eulerAngles.x, grabbedObject.transform.eulerAngles.y, grabbedObject.transform.eulerAngles.z);
+
+
         controller.lookRotationEnabled = false;
         Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
         //freeze the movements of the player while obsering the object
@@ -66,7 +75,7 @@ public class GrabAndDrop : MonoBehaviour {
 
 
 
-    bool CanGrab(GameObject candidate) // we an grab the object if it has a rigid body
+    bool CanGrab(GameObject candidate) // we can grab the object if it has a rigid body
     {
         return candidate.GetComponent<Rigidbody>() != null;// if we find the rigid body, return true
     }
@@ -96,6 +105,10 @@ public class GrabAndDrop : MonoBehaviour {
             //by making it false, we can make the objects float , check Game Manager for further info
             GameStates.isGrabbing = false;
         }
+        grabbedObject.transform.position = initialLocation;
+        grabbedObject.transform.eulerAngles = new Vector3(initialRotation.x, initialRotation.y, initialRotation.z);
+
+
 
         grabbedObject = null;
 
@@ -125,6 +138,8 @@ public class GrabAndDrop : MonoBehaviour {
           
  
             grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1)); ;
+
+            grabbedObject.transform.Rotate(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * Time.deltaTime * speedOfRotation);
         }
 	}
 }
