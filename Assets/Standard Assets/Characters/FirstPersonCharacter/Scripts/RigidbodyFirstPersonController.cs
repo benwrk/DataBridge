@@ -8,6 +8,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (CapsuleCollider))]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
+        public bool lookRotationEnabled = true;
         [Serializable]
         public class MovementSettings
         {
@@ -129,7 +130,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
-
+            //Changes Camera FoV by taking input from the scrollwheel
+            CameraFoVChange();
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
@@ -230,7 +232,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // get the rotation before it's changed
             float oldYRotation = transform.eulerAngles.y;
 
-            mouseLook.LookRotation (transform, cam.transform);
+            if(lookRotationEnabled)mouseLook.LookRotation (transform, cam.transform);
 
             if (m_IsGrounded || advancedSettings.airControl)
             {
@@ -259,6 +261,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_PreviouslyGrounded && m_IsGrounded && m_Jumping)
             {
                 m_Jumping = false;
+            }
+        }
+        //Changes Camera FoV by taking input from the scrollwheel
+        private void CameraFoVChange()
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 && cam.fieldOfView < 90)
+            {
+                cam.fieldOfView = ++cam.fieldOfView;
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && cam.fieldOfView > 30)
+            {
+                cam.fieldOfView = --cam.fieldOfView;
             }
         }
     }

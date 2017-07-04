@@ -7,7 +7,9 @@ public class GrabAndDrop : MonoBehaviour {
 
 
 
+    private float timeLerp = 50f;
     
+     
     private GameObject grabbedObject;
    // private float grabbedObjectSize;
     private RigidbodyFirstPersonController controller; // being used to freeze the player movements while observing
@@ -16,6 +18,7 @@ public class GrabAndDrop : MonoBehaviour {
     void Start()
     {
         controller = GetComponent<RigidbodyFirstPersonController>();
+       
     }
 
     //function that gives us the object that we are looking at
@@ -28,6 +31,7 @@ public class GrabAndDrop : MonoBehaviour {
         {
             return raycastHit.collider.gameObject;
         }
+        Debug.DrawLine(position, target, Color.cyan, 10.0f);
         // if theres no collision then the code will get down further
         return null;
 
@@ -47,13 +51,14 @@ public class GrabAndDrop : MonoBehaviour {
         grabbedObject = grabObject;
        // grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude; // used to make the object float at a certain distance from the camera depending on the size of the object 
         grabObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation; // the object while observing should not rotate (freeze the rotation)
-
+        controller.lookRotationEnabled = false;
+        Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
         //freeze the movements of the player while obsering the object
         controller.movementSettings.ForwardSpeed = 0;
         controller.movementSettings.BackwardSpeed = 0;
         controller.movementSettings.StrafeSpeed = 0;
         controller.movementSettings.JumpForce = 0;
-
+        
         //by making it true, we cant make the objects float , check Game Manager for further info
         GameStates.isGrabbing = true;
         
@@ -81,6 +86,7 @@ public class GrabAndDrop : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero; // while dropping the object , they should be released with zero velocity (basically you cant throw an object in some direction)
             grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; // un-freeze the rotation when the objct is dropped
 
+            controller.lookRotationEnabled = true;
             //un-freeze the movements of the player while obsering the object
             controller.movementSettings.ForwardSpeed = Constants.DefaultForwardSpeed;
             controller.movementSettings.BackwardSpeed = Constants.DefaultBackwardSpeed;
@@ -105,7 +111,7 @@ public class GrabAndDrop : MonoBehaviour {
         {
             if (grabbedObject == null) //if havent grabbed any object, grab one
             {
-                tryGrabObject(GetMouseHoverObject(2));
+                tryGrabObject(GetMouseHoverObject(3));
             }
             else
             {
