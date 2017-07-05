@@ -14,6 +14,11 @@ public class GrabAndDrop : MonoBehaviour
 
 
 
+
+
+
+
+
     private GameObject grabbedObject;
     // private float grabbedObjectSize;
     private RigidbodyFirstPersonController controller; // being used to freeze the player movements while observing
@@ -132,13 +137,14 @@ public class GrabAndDrop : MonoBehaviour
         {
             if (grabbedObject == null) //if havent grabbed any object, grab one
             {
-                tryGrabObject(GetMouseHoverObject(3));
+                tryGrabObject(GetMouseHoverObject(2));
             }
             else
             {
                 DropObject(); //if we alredy have something on our hand then drop it
             }
         }
+
 
         if (grabbedObject != null)//if we have grabbed an object , change its position to in front of us
         {
@@ -149,9 +155,44 @@ public class GrabAndDrop : MonoBehaviour
             grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1)); ;
 
             grabbedObject.transform.Rotate(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * Time.deltaTime * speedOfRotation);
-           // grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.up, (Input.GetAxis("Mouse X") * Time.deltaTime * speedOfRotation));
+            // grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.up, (Input.GetAxis("Mouse X") * Time.deltaTime * speedOfRotation));
             //grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.right, (Input.GetAxis("Mouse Y") * Time.deltaTime * speedOfRotation));
-            
+
+        }
+
+
+
+
+
+    }
+
+
+    private RaycastHit GlowObjectName;
+    private Color startColor;
+    private bool isGlowing;
+    private GameObject currentGlowingObject;
+
+    void FixedUpdate()
+    {
+        bool x = Physics.Linecast((Camera.main.transform.position),
+            (Camera.main.transform.position + Camera.main.transform.forward * 2),
+            out GlowObjectName);
+       // bool y = ;
+
+        if (!isGlowing && x && GlowObjectName.transform.gameObject.tag == "Pickable")
+        {
+            isGlowing = true;
+            currentGlowingObject = GlowObjectName.collider.gameObject;
+            startColor = currentGlowingObject.GetComponent<Renderer>().material.color;
+            currentGlowingObject.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+
+        if (currentGlowingObject != null && isGlowing && GlowObjectName.collider != null && GlowObjectName.collider.gameObject != currentGlowingObject)
+        {
+            isGlowing = false;
+            currentGlowingObject.GetComponent<Renderer>().material.color = startColor;
         }
     }
+
+
 }
