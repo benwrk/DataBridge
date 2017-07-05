@@ -143,7 +143,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
 
 
-           GetComponent<Rigidbody>().AddForce(Physics.gravity * GetComponent<Rigidbody>().mass );
+           GetComponent<Rigidbody>().AddForce(Physics.gravity * GetComponent<Rigidbody>().mass *2 );
 
 
             GroundCheck();
@@ -168,7 +168,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (m_IsGrounded)
             {
                 // m_RigidBody.drag = advancedSettings.slowDownRate + rbDrag;//set the drag to the slow down rate when grounded  
-                m_RigidBody.drag = 12f;
+                m_RigidBody.drag = 10f;
 
                 if (m_Jump)
                 {
