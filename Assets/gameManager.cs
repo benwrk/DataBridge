@@ -3,7 +3,7 @@
 public class gameManager : MonoBehaviour
 {
 
-
+    public static bool ifPicked = true;
     // Use this for initialization
     void Start()
     {
