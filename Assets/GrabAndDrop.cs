@@ -166,31 +166,29 @@ public class GrabAndDrop : MonoBehaviour
 
     }
 
-
-    private RaycastHit GlowObjectName;
+    //glowing part 
+    private RaycastHit hittingObject;
     private Color startColor;
-    private bool isGlowing;
     private GameObject currentGlowingObject;
 
     void FixedUpdate()
     {
         bool isHittingObject = Physics.Linecast((Camera.main.transform.position),
             (Camera.main.transform.position + Camera.main.transform.forward * 2),
-            out GlowObjectName);
+            out hittingObject);
 
-        if (!GameStates.isGrabbing && !isGlowing && isHittingObject && GlowObjectName.transform.gameObject.tag == "Pickable")
+        if (!GameStates.isGrabbing && currentGlowingObject == null && isHittingObject && hittingObject.transform.gameObject.tag == "Pickable")
         {
-            isGlowing = true;
-            currentGlowingObject = GlowObjectName.collider.gameObject;
+            currentGlowingObject = hittingObject.collider.gameObject;
             startColor = currentGlowingObject.GetComponent<Renderer>().material.color;
             currentGlowingObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
         else
         {
-            if (GameStates.isGrabbing || (currentGlowingObject != null && isGlowing && GlowObjectName.collider != null && GlowObjectName.collider.gameObject != currentGlowingObject))
+            if ((currentGlowingObject != null) && (hittingObject.collider == null || hittingObject.collider.gameObject != currentGlowingObject))
             {
-                isGlowing = false;
                 currentGlowingObject.GetComponent<Renderer>().material.color = startColor;
+                currentGlowingObject = null;
             }
         }
     }
