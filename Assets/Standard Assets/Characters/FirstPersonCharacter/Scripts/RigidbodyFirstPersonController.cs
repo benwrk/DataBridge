@@ -62,6 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 get { return m_Running; }
             }
+
 #endif
         }
 
@@ -131,7 +132,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             //Changes Camera FoV by taking input from the scrollwheel
-            CameraFoVChange();
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
@@ -272,16 +272,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
         //Changes Camera FoV by taking input from the scrollwheel
-        private void CameraFoVChange()
+        public void CameraFoVChange(int maxFoV, int minFoV, int increment)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") < 0 && cam.fieldOfView < 90)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 && cam.fieldOfView < maxFoV)
             {
-                cam.fieldOfView = ++cam.fieldOfView;
+                cam.fieldOfView = cam.fieldOfView + increment;
             }
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && cam.fieldOfView > 30)
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && cam.fieldOfView > minFoV)
             {
-                cam.fieldOfView = --cam.fieldOfView;
+                cam.fieldOfView = cam.fieldOfView - increment;
             }
+        }
+        public void CameraFoVReset()
+        {
+            cam.fieldOfView = 60;
         }
     }
 }
