@@ -8,15 +8,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (CapsuleCollider))]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
+        public bool lookRotationEnabled = true;
         [Serializable]
         public class MovementSettings
         {
-            public float ForwardSpeed = 8.0f;   // Speed when walking forward
-            public float BackwardSpeed = 4.0f;  // Speed when walking backwards
-            public float StrafeSpeed = 4.0f;    // Speed when walking sideways
+            public float ForwardSpeed = 5.0f;   // Speed when walking forward
+            public float BackwardSpeed = 3.0f;  // Speed when walking backwards
+            public float StrafeSpeed = 3.0f;    // Speed when walking sideways
             public float RunMultiplier = 2.0f;   // Speed when sprinting
 	        public KeyCode RunKey = KeyCode.LeftShift;
-            public float JumpForce = 30f;
+            public float JumpForce = 40f;
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
 
@@ -88,7 +89,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
-
+      //  private float rbDrag;
 
         public Vector3 Velocity
         {
@@ -129,7 +130,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
-
+            //Changes Camera FoV by taking input from the scrollwheel
+            CameraFoVChange();
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
@@ -139,6 +141,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+
+
+           GetComponent<Rigidbody>().AddForce(Physics.gravity * GetComponent<Rigidbody>().mass *2 );
+
+
             GroundCheck();
             Vector2 input = GetInput();
 
@@ -160,11 +167,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (m_IsGrounded)
             {
-                m_RigidBody.drag = 5f;
+                // m_RigidBody.drag = advancedSettings.slowDownRate + rbDrag;//set the drag to the slow down rate when grounded  
+                m_RigidBody.drag = 10f;
 
                 if (m_Jump)
                 {
-                    m_RigidBody.drag = 0f;
+                    //   m_RigidBody.drag = rbDrag;//Set drag to orig RigidBody Drag when airborn 
+                    m_RigidBody.drag = 0;
                     m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0f, m_RigidBody.velocity.z);
                     m_RigidBody.AddForce(new Vector3(0f, movementSettings.JumpForce, 0f), ForceMode.Impulse);
                     m_Jumping = true;
@@ -177,6 +186,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             else
             {
+               // m_RigidBody.drag = rbDrag;//Set drag to orig RigidBody Drag when airborn
                 m_RigidBody.drag = 0f;
                 if (m_PreviouslyGrounded && !m_Jumping)
                 {
@@ -230,7 +240,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // get the rotation before it's changed
             float oldYRotation = transform.eulerAngles.y;
 
-            mouseLook.LookRotation (transform, cam.transform);
+            if(lookRotationEnabled)mouseLook.LookRotation (transform, cam.transform);
 
             if (m_IsGrounded || advancedSettings.airControl)
             {
@@ -259,6 +269,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_PreviouslyGrounded && m_IsGrounded && m_Jumping)
             {
                 m_Jumping = false;
+            }
+        }
+        //Changes Camera FoV by taking input from the scrollwheel
+        private void CameraFoVChange()
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 && cam.fieldOfView < 90)
+            {
+                cam.fieldOfView = ++cam.fieldOfView;
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && cam.fieldOfView > 30)
+            {
+                cam.fieldOfView = --cam.fieldOfView;
             }
         }
     }
