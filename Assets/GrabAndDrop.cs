@@ -69,7 +69,7 @@ public class GrabAndDrop : MonoBehaviour
         initialLocation = grabbedObject.transform.position;
         initialRotation = new Vector3(grabbedObject.transform.eulerAngles.x, grabbedObject.transform.eulerAngles.y, grabbedObject.transform.eulerAngles.z);
 
-
+        
         controller.lookRotationEnabled = false;
         Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
         //freeze the movements of the player while obsering the object
@@ -123,7 +123,7 @@ public class GrabAndDrop : MonoBehaviour
 
 
         grabbedObject = null;
-
+        controller.CameraFoVReset();
 
     }
 
@@ -152,7 +152,7 @@ public class GrabAndDrop : MonoBehaviour
 
            // Debug.Log(grabbedObject.name);
             grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1)); ;
-
+            controller.CameraFoVChange(90 , 30 , 2);
             grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * speedOfRotation);
             // grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.up, (Input.GetAxis("Mouse X") * Time.deltaTime * speedOfRotation));
             //grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.right, (Input.GetAxis("Mouse Y") * Time.deltaTime * speedOfRotation));
