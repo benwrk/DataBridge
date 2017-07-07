@@ -137,7 +137,7 @@ public class GrabAndDrop : MonoBehaviour
         {
             if (grabbedObject == null) //if havent grabbed any object, grab one
             {
-                tryGrabObject(GetMouseHoverObject(2));
+                tryGrabObject(GetMouseHoverObject(3));
             }
             else
             {
@@ -150,11 +150,10 @@ public class GrabAndDrop : MonoBehaviour
         {
             //Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * (grabbedObjectSize) + (Vector3.up - adjustTheHeightOfTheObject );
 
-
-
+           // Debug.Log(grabbedObject.name);
             grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1)); ;
 
-            grabbedObject.transform.Rotate(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * Time.deltaTime * speedOfRotation);
+            grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * speedOfRotation);
             // grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.up, (Input.GetAxis("Mouse X") * Time.deltaTime * speedOfRotation));
             //grabbedObject.transform.RotateAround(grabbedObject.GetComponent<BoxCollider>().center, Vector3.right, (Input.GetAxis("Mouse Y") * Time.deltaTime * speedOfRotation));
 
@@ -174,18 +173,19 @@ public class GrabAndDrop : MonoBehaviour
     void FixedUpdate()
     {
         bool isHittingObject = Physics.Linecast((Camera.main.transform.position),
-            (Camera.main.transform.position + Camera.main.transform.forward * 2),
+            (Camera.main.transform.position + Camera.main.transform.forward * 3),
             out hittingObject);
 
         if (!GameStates.isGrabbing && currentGlowingObject == null && isHittingObject && hittingObject.transform.gameObject.tag == "Pickable")
-        {
+        {   
+            
             currentGlowingObject = hittingObject.collider.gameObject;
             startColor = currentGlowingObject.GetComponent<Renderer>().material.color;
             currentGlowingObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
         else
         {
-            if ((currentGlowingObject != null) && (hittingObject.collider == null || hittingObject.collider.gameObject != currentGlowingObject))
+            if ((currentGlowingObject != null) && (GameStates.isGrabbing || hittingObject.collider == null || hittingObject.collider.gameObject != currentGlowingObject))
             {
                 currentGlowingObject.GetComponent<Renderer>().material.color = startColor;
                 currentGlowingObject = null;
