@@ -15,6 +15,3 @@
 2017-02-27 18:24:55,005 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
 2017-02-27 18:24:55,072 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:e3e562f6-4ddb-424d-b290-4f2f7fb63fb8,port:8426
 2017-02-27 18:25:06,324 [9] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2017-07-10 12:32:38,633 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2017-07-10 12:32:38,687 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:6f804ab1-9603-4602-9c06-a4f6c7322811,port:8411
-2017-07-10 12:42:08,376 [10] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========

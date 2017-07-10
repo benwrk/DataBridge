@@ -16,5 +16,3 @@
 [0227/170453.974:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: The parameter is incorrect. (0x57)
 [0227/170505.326:ERROR:audio_output_device.cc(425)] IO loop going away before the audio device has been stopped
 [0227/170506.672:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: The parameter is incorrect. (0x57)
-[0710/123248.994:WARNING:quota_manager.cc(1833)] Create directory failed for path
-[0710/123248.997:WARNING:quota_manager.cc(1833)] Create directory failed for path
