@@ -6,41 +6,18 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class OpenTheDoor : MonoBehaviour
 {
     public GameObject rollingDoor;
-    private DoorState doorState = DoorState.Closed;
-    private enum DoorState
-    {
-        Opened,
-        Opening,
-        Closed,
-        Closing
-    }
-
+    private bool openDoor;
+    
     void OnTriggerEnter(Collider GameObj)
     {
         //  if (GameObj.GetComponent<Rigidbody>() == GetComponent<RigidbodyFirstPersonController>().m_RigidBody)
-        //   {
-        //  Debug.
-        //var animator = rollingDoor.GetComponent<Animator>();
-       // if (doorState == DoorState.Closed)
-       // {
-            rollingDoor.GetComponent<Animator>().Play("Rolling Door Open");
-        //    doorState = DoorState.Opening;
-       // }
-
-        //   }
+        rollingDoor.GetComponent<Animator>().SetBool("isOpen", true);
     }
-
-    void OnTriggerStay()
-    {
-        // rollingDoor.GetComponent<Animator>().Play("Rolling Door Open State");
-    }
-
-
 
 
     void OnTriggerExit()
     {
-        rollingDoor.GetComponent<Animator>().Play("Rolling Door Close");
+        rollingDoor.GetComponent<Animator>().SetBool("isOpen", false);
     }
 
 
