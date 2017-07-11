@@ -8,29 +8,28 @@ public class OpenTheDoor : MonoBehaviour
     public GameObject rollingDoor;
     
     public GameObject MainPlayer;
-   /* private DoorState doorState = DoorState.Closed;
-    private enum DoorState
-    {
-        Opened,
-        Opening,
-        Closed,
-        Closing
-    }*/
-
+    bool opening = false;
+   
+   
     void OnTriggerEnter(Collider GameObjCollider)
     {
 
-       // if (GameObjCollider == MainPlayer.GetComponent<Collider>() )
-      //  {
-            rollingDoor.GetComponent<Animator>().Play("Rolling Door Open");
-           
-       // }
+        if (GameObjCollider == MainPlayer.GetComponent<Collider>() )
+        {
+            if (opening == false)
+          {
+                OpenDoor();
+           }
+        }
    
     }
 
     void OnTriggerStay()
     {
         
+
+
+
     }
 
 
@@ -39,12 +38,47 @@ public class OpenTheDoor : MonoBehaviour
     void OnTriggerExit()
     {
 
-       
-            rollingDoor.GetComponent<Animator>().Play("Rolling Door Close");
-           
-       
+        opening = true;
+            //CloseDoor();
+    }
+
+
+
+    void FixedUpdate()
+    {
+        if(opening == false)
+        CloseDoor();
+
+
 
     }
+
+   
+
+
+    void OpenDoor()
+    {
+       
+        rollingDoor.GetComponent<Animation>().Play("Rolling Door Open");
+        //SetFlag();
+    }
+
+    void CloseDoor()
+    {
+   
+        rollingDoor.GetComponent<Animation>().Play("Rolling Door Close");
+        Invoke("SetFlag", 0);
+   
+    }
+
+
+    void SetFlag()
+    {
+        opening = !opening;
+    }
+
+
+    
 
 
 
