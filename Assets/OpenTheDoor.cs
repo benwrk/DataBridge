@@ -6,30 +6,33 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class OpenTheDoor : MonoBehaviour
 {
     public GameObject rollingDoor;
-    
-    public GameObject MainPlayer;
-    bool opening = false;
-   
-   
-    void OnTriggerEnter(Collider GameObjCollider)
+    private DoorState doorState = DoorState.Closed;
+    private enum DoorState
     {
+        Opened,
+        Opening,
+        Closed,
+        Closing
+    }
 
-        if (GameObjCollider == MainPlayer.GetComponent<Collider>() )
-        {
-            if (opening == false)
-          {
-                OpenDoor();
-           }
-        }
-   
+    void OnTriggerEnter(Collider GameObj)
+    {
+        //  if (GameObj.GetComponent<Rigidbody>() == GetComponent<RigidbodyFirstPersonController>().m_RigidBody)
+        //   {
+        //  Debug.
+        //var animator = rollingDoor.GetComponent<Animator>();
+       // if (doorState == DoorState.Closed)
+       // {
+            rollingDoor.GetComponent<Animator>().Play("Rolling Door Open");
+        //    doorState = DoorState.Opening;
+       // }
+
+        //   }
     }
 
     void OnTriggerStay()
     {
-        
-
-
-
+        // rollingDoor.GetComponent<Animator>().Play("Rolling Door Open State");
     }
 
 
@@ -37,48 +40,8 @@ public class OpenTheDoor : MonoBehaviour
 
     void OnTriggerExit()
     {
-
-        opening = true;
-            //CloseDoor();
+        rollingDoor.GetComponent<Animator>().Play("Rolling Door Close");
     }
-
-
-
-    void FixedUpdate()
-    {
-        if(opening == false)
-        CloseDoor();
-
-
-
-    }
-
-   
-
-
-    void OpenDoor()
-    {
-       
-        rollingDoor.GetComponent<Animation>().Play("Rolling Door Open");
-        //SetFlag();
-    }
-
-    void CloseDoor()
-    {
-   
-        rollingDoor.GetComponent<Animation>().Play("Rolling Door Close");
-        Invoke("SetFlag", 0);
-   
-    }
-
-
-    void SetFlag()
-    {
-        opening = !opening;
-    }
-
-
-    
 
 
 
