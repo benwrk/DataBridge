@@ -6,6 +6,21 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class OpenTheDoor : MonoBehaviour
 {
     public GameObject rollingDoor;
+<<<<<<< HEAD
+    
+    void OnTriggerEnter(Collider GameObj)
+    {
+        //  if (GameObj.GetComponent<Rigidbody>() == GetComponent<RigidbodyFirstPersonController>().m_RigidBody)
+        rollingDoor.GetComponent<Animator>().SetBool("isOpen", true);
+    }
+
+
+    void OnTriggerExit()
+    {
+        rollingDoor.GetComponent<Animator>().SetBool("isOpen", false);
+    }
+
+=======
     private DoorState doorState = DoorState.Closed;
     private enum DoorState
     {
@@ -46,4 +61,5 @@ public class OpenTheDoor : MonoBehaviour
 
 
 
+>>>>>>> anant
 }
