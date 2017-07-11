@@ -6,7 +6,6 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class OpenTheDoor : MonoBehaviour
 {
     public GameObject rollingDoor;
-    private bool openDoor;
     
     void OnTriggerEnter(Collider GameObj)
     {
@@ -19,8 +18,5 @@ public class OpenTheDoor : MonoBehaviour
     {
         rollingDoor.GetComponent<Animator>().SetBool("isOpen", false);
     }
-
-
-
 
 }
