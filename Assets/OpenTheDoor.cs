@@ -6,11 +6,12 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class OpenTheDoor : MonoBehaviour
 {
     public GameObject rollingDoor;
+    public GameObject player;
     
-    void OnTriggerEnter(Collider GameObj)
+    void OnTriggerEnter(Collider gameObject)
     {
-        //  if (GameObj.GetComponent<Rigidbody>() == GetComponent<RigidbodyFirstPersonController>().m_RigidBody)
-        rollingDoor.GetComponent<Animator>().SetBool("isOpen", true);
+        if (gameObject == player.GetComponent<Collider>())
+            rollingDoor.GetComponent<Animator>().SetBool("isOpen", true);
     }
 
 
