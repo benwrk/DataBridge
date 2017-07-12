@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class OpenTheDoor : MonoBehaviour
+public class DoorTrigger : MonoBehaviour
 {
-    public GameObject rollingDoor;
+    public GameObject controlledObject;
     public GameObject player;
+    public string boolName;
     
     void OnTriggerEnter(Collider gameObject)
     {
         if (gameObject == player.GetComponent<Collider>())
-            rollingDoor.GetComponent<Animator>().SetBool("isOpen", true);
+        {
+            controlledObject.GetComponent<Animator>().SetBool(boolName, true);
+        }
     }
 
 
     void OnTriggerExit()
     {
-        rollingDoor.GetComponent<Animator>().SetBool("isOpen", false);
+        controlledObject.GetComponent<Animator>().SetBool(boolName, false);
     }
     
 }
