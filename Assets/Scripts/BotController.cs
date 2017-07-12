@@ -8,6 +8,7 @@ public class BotController : MonoBehaviour
 
     public enum MoveType { Time, Speed }
     public static BotController instance;
+    public RigidbodyFirstPersonController MainPlayer;
 
     void Awake()
     {
@@ -21,27 +22,32 @@ public class BotController : MonoBehaviour
         }
     }
 
-    void Start()
+     /*Start()
     {
+        yield ToggleIsFrozen()
         StartCoroutine(instance.TranslateTo(gameObject.transform, new Vector3(2.08f, 0.05f, 22.62f), 2.5f, MoveType.Speed));
         StartCoroutine(instance.Rotation(gameObject.transform, new Vector3(0f, -90f, 0f), 2.5f));
-    }
+       StartCoroutine(ToggleIsFrozen());
 
 
-    /* public IEnumerator LookAtPlayer()
-    {
-        yield return gameObject.transform.LookAt(mainPlayer.transform);
+
     }*/
+
+
+ 
 
 
     public IEnumerator TranslateTo(Transform thisTransform, Vector3 endPos, float value, MoveType moveType)
     {
+        Debug.Log(System.DateTime.Now);
         yield return Translation(thisTransform, thisTransform.position, endPos, value, moveType);
+
     }
 
     public IEnumerator Translation(Transform thisTransform, Vector3 endPos, float value, MoveType moveType)
     {
         yield return Translation(thisTransform, thisTransform.position, thisTransform.position + endPos, value, moveType);
+
     }
 
     public IEnumerator Translation(Transform thisTransform, Vector3 startPos, Vector3 endPos, float value, MoveType moveType)
@@ -62,7 +68,7 @@ public class BotController : MonoBehaviour
     }
 
     public IEnumerator Rotation(Transform thisTransform, Vector3 degrees, float time)
-    {
+    { Debug.Log(System.DateTime.Now);
         Quaternion startRotation = thisTransform.rotation;
         Quaternion endRotation = thisTransform.rotation * Quaternion.Euler(degrees);
         float rate = 1.0f / time;
@@ -74,4 +80,18 @@ public class BotController : MonoBehaviour
             yield return null;
         }
     }
+
+    public IEnumerator ToggleIsFrozen()
+    {
+       // Debug.Log(System.DateTime.Now);
+        MainPlayer.GetComponent<PlayerController>().isFrozen = !MainPlayer.GetComponent<PlayerController>().isFrozen;
+        yield return null;
+    }
+   
+
+
+
+
+
+
 }
