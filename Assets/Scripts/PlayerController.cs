@@ -154,4 +154,9 @@ public class PlayerController : MonoBehaviour
         controller.movementSettings.StrafeSpeed = Constants.DefaultStrafeSpeed;
         controller.movementSettings.JumpForce = Constants.DefaultJumpForce;
     }
+
+    public void toggleFreeze()
+    {
+        isFrozen = !isFrozen;
+    }
 }

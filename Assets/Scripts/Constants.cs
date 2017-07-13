@@ -6,6 +6,6 @@
     public static readonly float DefaultForwardSpeed = 5.0f;
     public static readonly float DefaultBackwardSpeed = 3.0f;
     public static readonly float DefaultStrafeSpeed = 3.0f;
-    public static readonly float DefaultJumpForce = 22f;
+    public static readonly float DefaultJumpForce = 40f;
     public static readonly string GrabbableTag = "Pickable";
 }

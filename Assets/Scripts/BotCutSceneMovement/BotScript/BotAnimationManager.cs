@@ -5,40 +5,42 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class BotAnimationManager : MonoBehaviour {
 
-    RigidbodyFirstPersonController controller;
+    public  GameObject controller;
+   
     bool AnimatorFreeze;
 
     Animator BotAnimator;
 
     // Use this for initialization
     void Start () {
-
-        BotAnimator = GetComponent<GameObject>().GetComponent<Animator>();
-        AnimatorFreeze = BotAnimator.GetBool("frozen");
         
-		
-	}
+       
+
+        BotAnimator = GetComponent<Animator>();
+        AnimatorFreeze = BotAnimator.GetBool("frozen");
+        ToggleFreezeOfPlayer(AnimatorFreeze);
+       
+    }
 
 
 
     void ToggleFreezeOfPlayer(bool freeze)
     {
 
+        
 
-        // controller.GetComponent<PlayerController>().isFrozen = freeze;
-        if (freeze == true)
-        {
-            controller.GetComponent<PlayerController>().DisableMovements();
-        }
-        else if (freeze == false)
-        {
-            controller.GetComponent<PlayerController>().EnableMovements();
-        }
+        controller.GetComponent<PlayerController>().toggleFreeze();
+        
+        AnimatorFreeze = controller.GetComponent<PlayerController>().isFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
 
-        AnimatorFreeze = freeze;
+
+
+
+
+
     }
 
 
-
+    
 
 }
