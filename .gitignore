@@ -49,4 +49,5 @@ Corridor/Library/metadata/
 # ================== #
 databases*.meta
 *.log
+*.log.meta
 log-file*
