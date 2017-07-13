@@ -6,7 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class BotAnimationManager : MonoBehaviour {
 
     RigidbodyFirstPersonController controller;
-    bool Freeze;
+    bool AnimatorFreeze;
 
     Animator BotAnimator;
 
@@ -14,7 +14,7 @@ public class BotAnimationManager : MonoBehaviour {
     void Start () {
 
         BotAnimator = GetComponent<GameObject>().GetComponent<Animator>();
-        Freeze = BotAnimator.GetBool("frozen");
+        AnimatorFreeze = BotAnimator.GetBool("frozen");
         
 		
 	}
@@ -25,7 +25,8 @@ public class BotAnimationManager : MonoBehaviour {
     {
 
 
-        controller.GetComponent<PlayerController>().isFrozen = !freeze;
+        controller.GetComponent<PlayerController>().isFrozen = freeze;
+        AnimatorFreeze = freeze;
     }
 
 
