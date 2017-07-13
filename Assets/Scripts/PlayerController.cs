@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * Constants.ZeroGravityRotationSpeed);
     }
 
-    private void DisableMovements()
+    public void DisableMovements()
     {
         controller.movementSettings.ForwardSpeed = 0;
         controller.movementSettings.BackwardSpeed = 0;
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         controller.movementSettings.JumpForce = 0;
     }
 
-    private void EnableMovements()
+    public void EnableMovements()
     {
         controller.movementSettings.ForwardSpeed = Constants.DefaultForwardSpeed;
         controller.movementSettings.BackwardSpeed = Constants.DefaultBackwardSpeed;

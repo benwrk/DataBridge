@@ -25,7 +25,16 @@ public class BotAnimationManager : MonoBehaviour {
     {
 
 
-        controller.GetComponent<PlayerController>().isFrozen = freeze;
+        // controller.GetComponent<PlayerController>().isFrozen = freeze;
+        if (freeze == true)
+        {
+            controller.GetComponent<PlayerController>().DisableMovements();
+        }
+        else if (freeze == false)
+        {
+            controller.GetComponent<PlayerController>().EnableMovements();
+        }
+
         AnimatorFreeze = freeze;
     }
 
