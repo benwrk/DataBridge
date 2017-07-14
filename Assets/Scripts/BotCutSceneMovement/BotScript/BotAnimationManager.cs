@@ -10,12 +10,14 @@ public class BotAnimationManager : MonoBehaviour {
     bool AnimatorFreeze;
 
     Animator BotAnimator;
+    bool gravity;
+
 
     // Use this for initialization
     void Start () {
-        
-       
 
+
+        GameStates.floatingObjectsEnabled = true;
         BotAnimator = GetComponent<Animator>();
         AnimatorFreeze = BotAnimator.GetBool("frozen");
         ToggleFreezeOfPlayer(AnimatorFreeze);
