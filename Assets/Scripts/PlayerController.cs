@@ -3,45 +3,33 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerController : MonoBehaviour
 {
-    public RigidbodyFirstPersonController Controller;
-    public bool IsFrozen;
+    private GameObject _grabbedObject;
 
     private Vector3 _initialLocation;
     private Vector3 _initialRotation;
-    private GameObject _grabbedObject;
+    public RigidbodyFirstPersonController Controller;
+    public bool IsFrozen;
 
     // Update is called once per frame
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             if (_grabbedObject == null)
-            {
                 GrabObject(GetObjectAtCameraCenter(Constants.GrabbingCameraCenterRange));
-            }
             else
-            {
                 DropObject();
-            }
-        }
 
         if (_grabbedObject != null)
-        {
             CenterLockGrabbedObject();
-        }
-        
+
         if (IsFrozen)
-        {
             DisableMovements();
-        }
         else
-        {
             EnableMovements();
-        }
     }
 
     /// <summary>
-    /// Get the current objectToGrab under the center of the camera.
+    ///     Get the current objectToGrab under the center of the camera.
     /// </summary>
     /// <param name="range">Maximum range to be deemed under</param>
     /// <returns>GameObject under the center of the camera (or null if nothing is found)</returns>
@@ -51,7 +39,8 @@ public class PlayerController : MonoBehaviour
         var target = position + Camera.main.transform.forward * range;
         RaycastHit raycastHit;
 
-        if (Physics.Linecast(position, target, out raycastHit) && raycastHit.transform.gameObject.CompareTag(Constants.GrabbableTag))
+        if (Physics.Linecast(position, target, out raycastHit) &&
+            raycastHit.transform.gameObject.CompareTag(Constants.GrabbableTag))
         {
             GameStates.IsGrabbing = true;
             return raycastHit.collider.gameObject;
@@ -86,7 +75,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Test if the GameObject has a Rigidbody component
+    ///     Test if the GameObject has a Rigidbody component
     /// </summary>
     /// <param name="objectToTest">The GameObject to be tested</param>
     /// <returns>True if the GameObject is not null has an underlying Rigidbody component, false otherwise</returns>
@@ -98,9 +87,7 @@ public class PlayerController : MonoBehaviour
     private void DropObject()
     {
         if (_grabbedObject == null)
-        {
             return;
-        }
 
         _grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
@@ -111,7 +98,7 @@ public class PlayerController : MonoBehaviour
         IsFrozen = false;
 
         GameStates.IsGrabbing = false;
-        
+
         _grabbedObject.transform.position = _initialLocation;
         _grabbedObject.transform.eulerAngles = new Vector3(_initialRotation.x, _initialRotation.y, _initialRotation.z);
 
@@ -121,9 +108,11 @@ public class PlayerController : MonoBehaviour
 
     private void CenterLockGrabbedObject()
     {
-        _grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1));
+        _grabbedObject.transform.position =
+            Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1));
         Controller.CameraFoVChange(90, 30, 2);
-        _grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * Constants.ZeroGravityRotationSpeed);
+        _grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) *
+                                        Time.deltaTime * Constants.ZeroGravityRotationSpeed);
     }
 
     private void DisableMovements()

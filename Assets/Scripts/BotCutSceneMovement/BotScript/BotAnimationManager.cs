@@ -2,11 +2,10 @@
 
 public class BotAnimationManager : MonoBehaviour
 {
-    public GameObject controller;
-
     private bool AnimatorFreeze;
 
     private Animator BotAnimator;
+    public GameObject controller;
     private bool gravity;
 
 

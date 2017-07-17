@@ -5,9 +5,7 @@ public class FloatingRigidBody : MonoBehaviour
     private void Update()
     {
         if (GameStates.FloatingObjectsEnabled)
-        {
             FloatAround();
-        }
     }
 
     private void FloatAround()

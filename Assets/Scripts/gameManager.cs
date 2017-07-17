@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!GameStates.IsGrabbing && Input.GetMouseButtonUp(1))
-        {
             GameStates.FloatingObjectsEnabled = !GameStates.FloatingObjectsEnabled;
-        }
     }
 }
