@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 
-public class BotAnimationManager : MonoBehaviour
+namespace BotCutSceneMovement.BotScript
 {
-    private bool AnimatorFreeze;
-
-    private Animator BotAnimator;
-    public GameObject controller;
-    private bool gravity;
-
-
-    // Use this for initialization
-    private void Start()
+    public class BotAnimationManager : MonoBehaviour
     {
-        GameStates.FloatingObjectsEnabled = true;
-        BotAnimator = GetComponent<Animator>();
-        AnimatorFreeze = BotAnimator.GetBool("frozen");
-        ToggleFreezeOfPlayer(AnimatorFreeze);
-    }
+        private bool _animatorFreeze;
+        private Animator _botAnimator;
+        public GameObject Controller;
+        private bool _gravity;
+        
+        // Use this for initialization
+        private void Start()
+        {
+            GameStates.FloatingObjectsEnabled = true;
+            _botAnimator = GetComponent<Animator>();
+            _animatorFreeze = _botAnimator.GetBool("frozen");
+            ToggleFreezeOfPlayer(_animatorFreeze);
+        }
 
+        private void ToggleFreezeOfPlayer(bool freeze)
+        {
+            Controller.GetComponent<PlayerController>().ToggleFreeze();
 
-    private void ToggleFreezeOfPlayer(bool freeze)
-    {
-        controller.GetComponent<PlayerController>().ToggleFreeze();
-
-        AnimatorFreeze =
-            controller.GetComponent<PlayerController>()
-                .IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
+            _animatorFreeze =
+                Controller.GetComponent<PlayerController>()
+                    .IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
+        }
     }
 }
