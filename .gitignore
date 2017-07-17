@@ -43,3 +43,11 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
+
+# ================== #
+# SimpleWebBrowser #
+# ================== #
+databases*.meta
+*.log
+*.log.meta
+log-file*
