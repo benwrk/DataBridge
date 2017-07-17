@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
+﻿using UnityEngine;
 
-public class BotAnimationManager : MonoBehaviour {
+public class BotAnimationManager : MonoBehaviour
+{
+    public GameObject controller;
 
-    public  GameObject controller;
-   
     bool AnimatorFreeze;
 
     Animator BotAnimator;
@@ -14,35 +11,21 @@ public class BotAnimationManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-
-
-        GameStates.floatingObjectsEnabled = true;
+    void Start()
+    {
+        GameStates.FloatingObjectsEnabled = true;
         BotAnimator = GetComponent<Animator>();
         AnimatorFreeze = BotAnimator.GetBool("frozen");
         ToggleFreezeOfPlayer(AnimatorFreeze);
-       
     }
-
 
 
     void ToggleFreezeOfPlayer(bool freeze)
     {
+        //controller.GetComponent<PlayerController>().ToggleFreeze();
 
-        
-
-        controller.GetComponent<PlayerController>().toggleFreeze();
-        
-        AnimatorFreeze = controller.GetComponent<PlayerController>().isFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
-
-
-
-
-
-
+        AnimatorFreeze =
+            controller.GetComponent<PlayerController>()
+                .IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
     }
-
-
-    
-
 }

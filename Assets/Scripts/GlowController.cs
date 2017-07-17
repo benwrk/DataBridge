@@ -1,36 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GlowController : MonoBehaviour {
-
-    private RaycastHit hittingObject;
-    private Color startColor;
-    private GameObject currentGlowingObject;
-
-    void Start () {
-		
-	}
+public class GlowController : MonoBehaviour
+{
+    private RaycastHit _hittingObject;
+    private Color _startColor;
+    private GameObject _currentGlowingObject;
 
     void Update()
     {
-        bool isHittingObject = Physics.Linecast((Camera.main.transform.position),
-            (Camera.main.transform.position + Camera.main.transform.forward * 3),
-            out hittingObject);
+        var isHittingObject = Physics.Linecast(Camera.main.transform.position,
+            Camera.main.transform.position + Camera.main.transform.forward * 3,
+            out _hittingObject);
 
-        if (!GameStates.isGrabbing && currentGlowingObject == null && isHittingObject && hittingObject.transform.gameObject.tag == "Pickable")
+        if (!GameStates.IsGrabbing && _currentGlowingObject == null && isHittingObject &&
+            _hittingObject.transform.gameObject.CompareTag("Pickable"))
         {
-            currentGlowingObject = hittingObject.collider.gameObject;
-            startColor = currentGlowingObject.GetComponent<Renderer>().material.color;
-            currentGlowingObject.GetComponent<Renderer>().material.color = Color.yellow;
+            _currentGlowingObject = _hittingObject.collider.gameObject;
+            _startColor = _currentGlowingObject.GetComponent<Renderer>().material.color;
+            _currentGlowingObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
         else
         {
-            if ((currentGlowingObject != null) && (GameStates.isGrabbing || hittingObject.collider == null || hittingObject.collider.gameObject != currentGlowingObject))
+            if (_currentGlowingObject == null || !GameStates.IsGrabbing && _hittingObject.collider != null &&
+                _hittingObject.collider.gameObject == _currentGlowingObject)
             {
-                currentGlowingObject.GetComponent<Renderer>().material.color = startColor;
-                currentGlowingObject = null;
+                return;
             }
+            _currentGlowingObject.GetComponent<Renderer>().material.color = _startColor;
+            _currentGlowingObject = null;
         }
     }
 }

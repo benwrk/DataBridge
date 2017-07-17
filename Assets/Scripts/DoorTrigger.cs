@@ -1,26 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
+﻿using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    public GameObject controlledObject;
-    public GameObject player;
-    public string boolName;
-    
-    void OnTriggerEnter(Collider gameObject)
+    public GameObject ControlledObject;
+    public GameObject Player;
+    public string BoolName;
+
+    void OnTriggerEnter(Collider other)
     {
-        if (gameObject == player.GetComponent<Collider>())
+        if (other == Player.GetComponent<Collider>())
         {
-            controlledObject.GetComponent<Animator>().SetBool(boolName, true);
+            ControlledObject.GetComponent<Animator>().SetBool(BoolName, true);
         }
     }
 
-
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        controlledObject.GetComponent<Animator>().SetBool(boolName, false);
+        ControlledObject.GetComponent<Animator>().SetBool(BoolName, false);
     }
-    
 }

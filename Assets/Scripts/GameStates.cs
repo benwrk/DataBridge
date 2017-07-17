@@ -1,6 +1,5 @@
-﻿
-public static class GameStates
+﻿public static class GameStates
 {
-    public static bool floatingObjectsEnabled;
-    public static bool isGrabbing;
+    public static bool FloatingObjectsEnabled;
+    public static bool IsGrabbing;
 }

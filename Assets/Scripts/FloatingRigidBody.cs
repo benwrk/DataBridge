@@ -1,26 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 public class FloatingRigidBody : MonoBehaviour
 {
-    void Start()
-    {
-    }
-
     void Update()
     {
-        
-        if (GameStates.floatingObjectsEnabled)
+        if (GameStates.FloatingObjectsEnabled)
         {
-            gravityChanged();
+            FloatAround();
         }
     }
 
-    void gravityChanged()
+    private void FloatAround()
     {
         GetComponent<Rigidbody>().AddForce(Vector3.up * Constants.ZeroGravityFloatStrength);
-        transform.Rotate(Constants.ZeroGravityRandomRotationStrength, Constants.ZeroGravityRandomRotationStrength, Constants.ZeroGravityRandomRotationStrength);
+        transform.Rotate(Constants.ZeroGravityRandomRotationStrength, Constants.ZeroGravityRandomRotationStrength,
+            Constants.ZeroGravityRandomRotationStrength);
     }
-
 }
