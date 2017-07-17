@@ -13,7 +13,7 @@ public class GlowController : MonoBehaviour
             out _hittingObject);
 
         if (!GameStates.IsGrabbing && _currentGlowingObject == null && isHittingObject &&
-            _hittingObject.transform.gameObject.CompareTag("Pickable"))
+            _hittingObject.transform.gameObject.CompareTag(Constants.GrabbableTag))
         {
             _currentGlowingObject = _hittingObject.collider.gameObject;
             _startColor = _currentGlowingObject.GetComponent<Renderer>().material.color;

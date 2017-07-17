@@ -15,22 +15,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_grabbedObject == null) //if havent grabbed any object, grab one
+            if (_grabbedObject == null)
             {
-                TryGrabObject(GetMouseHoverObject(3));
+                GrabObject(GetObjectAtCameraCenter(Constants.GrabbingCameraCenterRange));
             }
             else
             {
-                DropObject(); //if we alredy have something on our hand then drop it
+                DropObject();
             }
         }
 
-
-        if (_grabbedObject != null)//if we have grabbed an object , change its position to in front of us
+        if (_grabbedObject != null)
         {
-            FocusOnObjectAndLockCamera();
+            CenterLockGrabbedObject();
         }
-
+        
         if (IsFrozen)
         {
             DisableMovements();
@@ -41,90 +40,86 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //function that gives us the object that we are looking at
-    private static GameObject GetMouseHoverObject(float range)
+    /// <summary>
+    /// Get the current objectToGrab under the center of the camera.
+    /// </summary>
+    /// <param name="range">Maximum range to be deemed under</param>
+    /// <returns>GameObject under the center of the camera (or null if nothing is found)</returns>
+    private static GameObject GetObjectAtCameraCenter(float range)
     {
-        var position = Camera.main.transform.position; // check it gameObject.transform.position + new Vector3(0, 1, 0) ;
+        var position = Camera.main.transform.position;
         var target = position + Camera.main.transform.forward * range;
         RaycastHit raycastHit;
-        
-        if (Physics.Linecast(position, target, out raycastHit) && raycastHit.transform.gameObject.CompareTag("Pickable"))
+
+        if (Physics.Linecast(position, target, out raycastHit) && raycastHit.transform.gameObject.CompareTag(Constants.GrabbableTag))
         {
-            GameStates.IsGrabbing = true;//by making it true, we cant make the objects float , check Game Manager for further info
+            GameStates.IsGrabbing = true;
             return raycastHit.collider.gameObject;
         }
         Debug.DrawLine(position, target, Color.cyan, 10.0f);
-        // if theres no collision then the code will get down further
         return null;
     }
-    
-    private void TryGrabObject(GameObject grabObject)
+
+    private void GrabObject(GameObject objectToGrab)
     {
-        // check if actually a thing that we can grab
-        if (grabObject == null || !HasRigidbody(grabObject))
+        if (!HasRigidbody(objectToGrab))
         {
-            // if it's nothing then u cant grab it and return
+            Debug.Log("Nothing to Grab!");
             return;
         }
 
-        _grabbedObject = grabObject;
-        // grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude; // used to make the object float at a certain distance from the camera depending on the size of the object 
-        grabObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation; // the object while observing should not rotate (freeze the rotation)
+        _grabbedObject = objectToGrab;
+        // grabbedObjectSize = objectToGrab.GetComponent<Renderer>().bounds.size.magnitude; // used to make the objectToGrab float at a certain distance from the camera depending on the size of the objectToGrab 
 
+        // The object should not rotate around when grabbed.
+        objectToGrab.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         _initialLocation = _grabbedObject.transform.position;
-        _initialRotation = new Vector3(_grabbedObject.transform.eulerAngles.x, _grabbedObject.transform.eulerAngles.y, _grabbedObject.transform.eulerAngles.z);
-
+        _initialRotation = new Vector3(_grabbedObject.transform.eulerAngles.x, _grabbedObject.transform.eulerAngles.y,
+            _grabbedObject.transform.eulerAngles.z);
 
         Controller.lookRotationEnabled = false;
-        Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
+        Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y,
+            Camera.main.transform.eulerAngles.z);
 
         IsFrozen = true;
-        
-        //freeze the movements of the player while obsering the object
-        
-
-        //by making it true, we cant make the objects float , check Game Manager for further info
     }
 
-    private static bool HasRigidbody(GameObject candidate) // we can grab the object if it has a rigid body
+    /// <summary>
+    /// Test if the GameObject has a Rigidbody component
+    /// </summary>
+    /// <param name="objectToTest">The GameObject to be tested</param>
+    /// <returns>True if the GameObject is not null has an underlying Rigidbody component, false otherwise</returns>
+    private static bool HasRigidbody(GameObject objectToTest)
     {
-        return candidate.GetComponent<Rigidbody>() != null;// if we find the rigid body, return true
+        return objectToTest != null && objectToTest.GetComponent<Rigidbody>() != null;
     }
 
     private void DropObject()
     {
-
-        if (_grabbedObject == null) // if nothing is grabbed then 
+        if (_grabbedObject == null)
         {
             return;
         }
 
-        if (_grabbedObject.GetComponent<Rigidbody>() != null) // if the grabbed object has a rigid body, not null 
-        {
+        _grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            _grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero; // while dropping the object , they should be released with zero velocity (basically you cant throw an object in some direction)
-            _grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; // un-freeze the rotation when the objct is dropped
+        // Resume rotation.
+        _grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-            Controller.lookRotationEnabled = true;
+        Controller.lookRotationEnabled = true;
+        IsFrozen = false;
 
-            IsFrozen = false;
-            //un-freeze the movements of the player while obsering the object
-            
-
-            //by making it false, we can make the objects float , check Game Manager for further info
-            GameStates.IsGrabbing = false;
-        }
+        GameStates.IsGrabbing = false;
+        
         _grabbedObject.transform.position = _initialLocation;
         _grabbedObject.transform.eulerAngles = new Vector3(_initialRotation.x, _initialRotation.y, _initialRotation.z);
-        Controller.movementSettings.JumpForce = 40;
-
 
         _grabbedObject = null;
         Controller.CameraFoVReset();
     }
 
-    private void FocusOnObjectAndLockCamera()
+    private void CenterLockGrabbedObject()
     {
         _grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1));
         Controller.CameraFoVChange(90, 30, 2);
