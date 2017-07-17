@@ -15,7 +15,7 @@ namespace BotCutSceneMovement.BotScript
             GameStates.FloatingObjectsEnabled = true;
             _botAnimator = GetComponent<Animator>();
             _animatorFreeze = _botAnimator.GetBool("frozen");
-            ToggleFreezeOfPlayer(_animatorFreeze);
+           // ToggleFreezeOfPlayer(_animatorFreeze);
         }
 
         private void ToggleFreezeOfPlayer(bool freeze)
