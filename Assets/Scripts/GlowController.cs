@@ -6,7 +6,7 @@ public class GlowController : MonoBehaviour
     private Color _startColor;
     private GameObject _currentGlowingObject;
 
-    void Update()
+    private void Update()
     {
         var isHittingObject = Physics.Linecast(Camera.main.transform.position,
             Camera.main.transform.position + Camera.main.transform.forward * 3,

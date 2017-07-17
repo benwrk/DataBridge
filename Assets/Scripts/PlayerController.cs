@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _grabbedObject;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     private void FocusOnObjectAndLockCamera()
     {
-        _grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1)); ;
+        _grabbedObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1));
         Controller.CameraFoVChange(90, 30, 2);
         _grabbedObject.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X")) * Time.deltaTime * Constants.ZeroGravityRotationSpeed);
     }

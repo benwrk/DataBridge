@@ -6,7 +6,7 @@ public class DoorTrigger : MonoBehaviour
     public GameObject Player;
     public string BoolName;
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other == Player.GetComponent<Collider>())
         {
@@ -14,7 +14,7 @@ public class DoorTrigger : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         ControlledObject.GetComponent<Animator>().SetBool(BoolName, false);
     }

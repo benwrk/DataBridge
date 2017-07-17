@@ -4,14 +4,14 @@ public class BotAnimationManager : MonoBehaviour
 {
     public GameObject controller;
 
-    bool AnimatorFreeze;
+    private bool AnimatorFreeze;
 
-    Animator BotAnimator;
-    bool gravity;
+    private Animator BotAnimator;
+    private bool gravity;
 
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         GameStates.FloatingObjectsEnabled = true;
         BotAnimator = GetComponent<Animator>();
@@ -20,9 +20,9 @@ public class BotAnimationManager : MonoBehaviour
     }
 
 
-    void ToggleFreezeOfPlayer(bool freeze)
+    private void ToggleFreezeOfPlayer(bool freeze)
     {
-        //controller.GetComponent<PlayerController>().ToggleFreeze();
+        controller.GetComponent<PlayerController>().ToggleFreeze();
 
         AnimatorFreeze =
             controller.GetComponent<PlayerController>()
