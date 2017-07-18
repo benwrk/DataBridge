@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RightAnswer : MonoBehaviour {
 
-    public Button TheButton;
+    private Button TheButton;
     //public Color newColor = Color.red;
 
     void Start()

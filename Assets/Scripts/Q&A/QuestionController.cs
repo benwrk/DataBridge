@@ -12,8 +12,7 @@ public class QuestionController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ToggleFreezeOfPlayer();
-
+        Cursor.visible = false;
     }
 	
 	// Update is called once per frame
@@ -25,15 +24,10 @@ public class QuestionController : MonoBehaviour {
     {
         Controller.GetComponent<PlayerController>().ToggleFreeze();
         RBController.lookRotationEnabled = !RBController.lookRotationEnabled;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        if (Cursor.lockState == CursorLockMode.Locked) { Cursor.lockState = CursorLockMode.Confined; Debug.Log(Cursor.lockState); }
+        else if(Cursor.lockState == CursorLockMode.Confined) { Cursor.lockState = CursorLockMode.Locked; Debug.Log(Cursor.lockState); }
+        if (Cursor.visible == true) { Cursor.visible = false; }
+        else if (Cursor.visible == false) { Cursor.visible = true; }
+
     }
-
-
-
-
-
-
-
-
 }
