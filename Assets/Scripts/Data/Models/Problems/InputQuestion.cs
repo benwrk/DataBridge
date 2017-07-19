@@ -1,7 +1,12 @@
-﻿namespace Data.Models.Problems
+﻿using System.Collections.Generic;
+
+namespace Data.Models.Problems
 {
     public class InputQuestion : Question
     {
-        public InputAnswer Input;
+        
+        public string Placeholder;
+        public List<Rule> Rules;
+        public Rule.RuleValidationOption RuleValidation;
     }
 }
