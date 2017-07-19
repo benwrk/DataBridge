@@ -1,6 +1,6 @@
 ﻿namespace Data.Models.Problems
 {
-    public class Question
+    public abstract class Question
     {
         public string Text;
     }

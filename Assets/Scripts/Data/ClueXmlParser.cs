@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml;
 using Data.Models.Clues;
 
-namespace Data.Models
+namespace Data
 {
     public class ClueXmlParser
     {
@@ -15,9 +15,11 @@ namespace Data.Models
             var levels = document.GetElementsByTagName(Constants.XmlParser.Clues.LevelTagName);
             var selectedLevel = levels[level - 1];
 
-            return (from XmlElement clueNode in selectedLevel.ChildNodes
-                select new Clue {Text = clueNode.GetAttribute(Constants.XmlParser.Clues.ClueTextAttributeName)}
-            ).ToList();
+            return selectedLevel.ChildNodes.Cast<XmlElement>()
+                .Select(clueElement => new Clue
+                {
+                    Text = clueElement.GetAttribute(Constants.XmlParser.Clues.ClueTextAttributeName)
+                }).ToList();
         }
     }
 }

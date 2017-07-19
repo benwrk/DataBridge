@@ -2,6 +2,12 @@
 {
     public abstract class Rule
     {
-        public string Word;
+        public enum RuleValidationOption
+        {
+            All,
+            Any
+        }
+
+        public string Phrase;
     }
 }

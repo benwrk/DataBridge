@@ -12,12 +12,10 @@
       </ChoiceQuestion>
     </Problem>
     <Problem text="This is the second problem, with text inputs!">
-      <InputQuestion text="Input yes without no!">
-        <InputAnswer placeholder="Sample answer: Yes, No!">
-          <!-- <Matches word="Yes"/> -->
-          <Contains word="Yes" />
-          <Without word="No" />
-        </InputAnswer>
+      <InputQuestion text="Input yes without no!" placeholder="Sample answer: Yes, No!" rule-validation="all">
+        <MatchesRule phrase="Yes I do"/>
+        <ContainsRule phrase="Yes" />
+        <WithoutRule phrase="No" />
       </InputQuestion>
     </Problem>
   </Level>
