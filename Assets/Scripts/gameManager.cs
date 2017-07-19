@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
         if (!GameStates.IsGrabbing && Input.GetMouseButtonUp(1))
             GameStates.FloatingObjectsEnabled = !GameStates.FloatingObjectsEnabled;
 
+        
 
       
 
