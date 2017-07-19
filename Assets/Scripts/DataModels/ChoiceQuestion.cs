@@ -2,7 +2,7 @@
 
 namespace DataModels
 {
-    public class MultipleChoiceQuestion : Question
+    public class ChoiceQuestion : Question
     {
         public List<Choice> Choices;
     }

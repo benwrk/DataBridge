@@ -4,23 +4,23 @@
   <Level name="level-1">
     <!-- MCQ: Q1 -->
     <Problem text="This is the first problem!">
-      <MultipleChoiceQuestion text="This is the question!">
+      <ChoiceQuestion text="This is the question!">
         <!-- This is how to mark the answer as correct -->
         <Choice text="1. This is the correct answer!" correct="true" />
         <Choice text="2. This is the wrong answer!" />
         <Choice text="3. This is also wrong!" />
         <Choice text="4. All above is correct? No!" />
-      </MultipleChoiceQuestion>
+      </ChoiceQuestion>
     </Problem>
     <!-- MIQ: Q2, Q3, Q4, Q5 -->
     <Problem text="This is the second problem, with text inputs!">
-      <MultipleInputQuestion text="Input yes and not no!">
-        <AnswerInput placeholder="Sample answer: Yes, No!">
-          <!-- <MatchesWord word="Yes"/> -->
-          <ContainsWord word="Yes" />
-          <WithoutWord word="No" />
-        </AnswerInput>
-      </MultipleInputQuestion>
+      <InputQuestion text="Input yes and not no!">
+        <InputAnswer placeholder="Sample answer: Yes, No!">
+          <!-- <Matches word="Yes"/> -->
+          <Contains word="Yes" />
+          <Without word="No" />
+        </InputAnswer>
+      </InputQuestion>
     </Problem>
   </Level>
   <Level name="level-2">
