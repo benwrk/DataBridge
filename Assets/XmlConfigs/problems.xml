@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<ProblemsConfig>
+  <Level name="level-1">
+    <Problem text="This is the first problem!">
+      <ChoiceQuestion text="This is the question!">
+        <!-- This is how to mark the answer as correct -->
+        <Choice text="1. This is the correct answer!" correct="true" />
+        <Choice text="2. This is the wrong answer!" />
+        <Choice text="3. This is also wrong!" />
+        <Choice text="4. All above is correct? No!" />
+      </ChoiceQuestion>
+    </Problem>
+    <Problem text="This is the second problem, with text inputs!">
+      <InputQuestion text="Input yes without no!" placeholder="Sample answer: Yes, No!" rule-validation="all">
+        <MatchesRule phrase="Yes I do"/>
+        <ContainsRule phrase="Yes" />
+        <WithoutRule phrase="No" />
+      </InputQuestion>
+    </Problem>
+  </Level>
+  <Level name="level-2">
+    <!-- Nothing here yet! -->
+  </Level>
+</ProblemsConfig>
