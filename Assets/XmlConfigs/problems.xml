@@ -2,7 +2,6 @@
 
 <ProblemsConfig>
   <Level name="level-1">
-    <!-- MCQ: Q1 -->
     <Problem text="This is the first problem!">
       <ChoiceQuestion text="This is the question!">
         <!-- This is how to mark the answer as correct -->
@@ -12,9 +11,8 @@
         <Choice text="4. All above is correct? No!" />
       </ChoiceQuestion>
     </Problem>
-    <!-- MIQ: Q2, Q3, Q4, Q5 -->
     <Problem text="This is the second problem, with text inputs!">
-      <InputQuestion text="Input yes and not no!">
+      <InputQuestion text="Input yes without no!">
         <InputAnswer placeholder="Sample answer: Yes, No!">
           <!-- <Matches word="Yes"/> -->
           <Contains word="Yes" />

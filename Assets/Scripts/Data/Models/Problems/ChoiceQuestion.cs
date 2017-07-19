@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataModels
+namespace Data.Models.Problems
 {
     public class ChoiceQuestion : Question
     {

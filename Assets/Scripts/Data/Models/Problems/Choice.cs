@@ -1,4 +1,4 @@
-﻿namespace DataModels
+﻿namespace Data.Models.Problems
 {
     public class Choice
     {

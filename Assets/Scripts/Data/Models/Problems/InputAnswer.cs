@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DataModels
+namespace Data.Models.Problems
 {
     public class InputAnswer
     {
         public string Placeholder;
-        public List<Rule> AnswerValidators;
+        public List<Rule> Rules;
     }
 }
