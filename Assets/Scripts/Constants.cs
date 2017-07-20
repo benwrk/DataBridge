@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Data.Models.Problems;
 
 public static class Constants
 {
@@ -19,13 +20,16 @@ public static class Constants
             public const string ConfigFilePath = "Assets/XmlConfigs/clues.xml";
             public const string LevelTagName = "Level";
             public const string ClueTagName = "Clue";
-            public const string ClueTextAttributeName = "text";
+            public const string TextAttributeName = "text";
         }
 
         public static class Problems
         {
             public const string ConfigFilePath = "Assets/XmlConfigs/problems.xml";
             public const string LevelTagName = "Level";
+            public const string ChoiceQuestionTagName = "ChoiceQuestion";
+            public const string InputQuestionTagName = "InputQuestion";
+            public const string TextAttributeName = "text";
         }
     }
 }

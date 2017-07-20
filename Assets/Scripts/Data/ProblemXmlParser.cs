@@ -9,10 +9,13 @@ namespace Data
     {
         public static List<Problem> GetProblems(int level)
         {
-            var document = new XmlDocument();
-            document.Load(Constants.XmlParser.Problems.ConfigFilePath);
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Problems.ConfigFilePath, new XmlReaderSettings()
+            {
+                IgnoreComments = true
+            }));
 
-            var levels = document.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
+            var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
             var selectedLevel = levels[level - 1];
 
             var problems = new List<Problem>();
@@ -24,27 +27,27 @@ namespace Data
                 {
                     switch (questionElement.Name)
                     {
-                        case "ChoiceQuestion":
+                        case Constants.XmlParser.Problems.ChoiceQuestionTagName:
                             var choiceQuestion = new ChoiceQuestion()
                             {
-                                Text = questionElement.GetAttribute("text"),
+                                Text = questionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                                 Choices = new List<Choice>()
                             };
                             foreach (XmlElement choiceElement in questionElement.ChildNodes)
                             {
                                 choiceQuestion.Choices.Add(new Choice()
                                 {
-                                    Text = choiceElement.GetAttribute("text"),
+                                    Text = choiceElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                                     IsCorrect = choiceElement.HasAttribute("correct") && choiceElement.GetAttribute("correct").Equals("true")
                                 });
                             }
                             questions.Add(choiceQuestion);
                             break;
 
-                        case "InputQuestion":
+                        case Constants.XmlParser.Problems.InputQuestionTagName:
                             var inputQuestion = new InputQuestion()
                             {
-                                Text = questionElement.GetAttribute("text"),
+                                Text = questionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                                 Placeholder = questionElement.GetAttribute("placeholder"),
                                 Rules = new List<Rule>()
                             };
@@ -95,7 +98,7 @@ namespace Data
                 }
                 problems.Add(new Problem()
                 {
-                    Text = problemElement.GetAttribute("text"),
+                    Text = problemElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                     Questions = questions
                 });
             }
