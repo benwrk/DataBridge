@@ -9,10 +9,14 @@ namespace Data
     {
         public static List<Problem> GetProblems(int level)
         {
-            var document = new XmlDocument();
-            document.Load(Constants.XmlParser.Problems.ConfigFilePath);
+            var xmlDocument = new XmlDocument();
+            var xmlReader = XmlReader.Create(Constants.XmlParser.Problems.ConfigFilePath, new XmlReaderSettings()
+            {
+                IgnoreComments = true
+            });
+            xmlDocument.Load(xmlReader);
 
-            var levels = document.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
+            var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
             var selectedLevel = levels[level - 1];
 
             var problems = new List<Problem>();
@@ -82,7 +86,7 @@ namespace Data
                                     break;
                                 case "any":
                                     inputQuestion.RuleValidation = Rule.RuleValidationOption.Any;
-                                    break; ;
+                                    break;
                                 default:
                                     throw new XmlSchemaException();
                             }
