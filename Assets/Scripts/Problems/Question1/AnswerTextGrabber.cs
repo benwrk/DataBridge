@@ -5,26 +5,28 @@ using Data.Models.Problems;
 using Data;
 using UnityEngine.UI;
 
-public class AnswerTextGrabber : MonoBehaviour {
-    int level;
+public class AnswerTextGrabber : MonoBehaviour
+{
+    //private int _level;
 
-    public int questionNumberCQ;
-    public int answerNumberCQ;
-    public Text uiText;
-    // Use this for initialization
-    void Start () {
-        level = 1;
-        var problems = new List<Problem>();
-        problems = Data.ProblemXmlParser.GetProblems(level);
-        var firstProblem = problems[0];
-        var Question = (ChoiceQuestion)firstProblem.Questions[questionNumberCQ - 1];
+    //public int QuestionNumberCQ;
+    //public int AnswerNumberCQ;
+    //public Text uiText;
+    //// Use this for initialization
+    //private void Start()
+    //{
+    //    _level = 1;
+    //    var problems = new List<Problem>();
+    //    problems = ProblemXmlParser.GetProblems(_level);
+    //    var firstProblem = problems[0];
+    //    var question = (ChoiceQuestion) firstProblem.Questions[QuestionNumberCQ - 1];
 
-        var choices = Question.Choices;
-        var Choice = choices[answerNumberCQ-1];
-        var ChoiceText = choices[answerNumberCQ -1].Text;
-        string textForUi = ChoiceText;
-        uiText.text = textForUi;
-    }
+    //    var choices = question.Choices;
+    //    var choice = choices[AnswerNumberCQ - 1];
+    //    var choiceText = choices[AnswerNumberCQ - 1].Text;
+    //    string textForUi = choiceText;
+    //    uiText.text = textForUi;
+    //}
 
-
+    
 }
