@@ -10,10 +10,18 @@ namespace Data
         public static List<Clue> GetClues(int level)
         {
             var xmlDocument = new XmlDocument();
+<<<<<<< HEAD
             xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Clues.ConfigFilePath, new XmlReaderSettings()
             {
                 IgnoreComments = true
             }));
+=======
+            var xmlReader = XmlReader.Create(Constants.XmlParser.Clues.ConfigFilePath, new XmlReaderSettings
+            {
+                IgnoreComments = true
+            });
+            xmlDocument.Load(xmlReader);
+>>>>>>> 0d3b785481d210b5349401d39d37a4aff545d706
 
             var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Clues.LevelTagName);
             var selectedLevel = levels[level - 1];

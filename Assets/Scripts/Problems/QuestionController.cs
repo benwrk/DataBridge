@@ -7,6 +7,7 @@ public class QuestionController : MonoBehaviour
 {
     public GameObject Controller;
     public RigidbodyFirstPersonController RbController;
+
     
     // Use this for initialization
     private void Start()
