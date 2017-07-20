@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WrongAnswer : MonoBehaviour
-{
+public class AnswerController : MonoBehaviour {
+
     private Button _button;
 
     private void Start()

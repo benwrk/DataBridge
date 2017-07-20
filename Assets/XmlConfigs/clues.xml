@@ -7,6 +7,5 @@
     <Clue text="The third clue!" />
   </Level>
   <Level name="level-2">
-    <!-- Nothing here yet! -->
   </Level>
 </CluesConfig>
