@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class ChoiceProblemController : MonoBehaviour
+public class ProblemController : MonoBehaviour
 {
     public GameManager GameManager;
     public GameObject Controller;
