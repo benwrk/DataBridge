@@ -10,7 +10,7 @@ namespace Data
         public static List<Clue> GetClues(int level)
         {
             var xmlDocument = new XmlDocument();
-            xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Clues.ConfigFilePath, new XmlReaderSettings()
+            xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Clues.ConfigFilePath, new XmlReaderSettings
             {
                 IgnoreComments = true
             }));

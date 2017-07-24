@@ -2,7 +2,7 @@
 
 <ProblemsConfig>
   <Level name="level-1">
-    <Problem text="This is the first problem!">
+    <ChoiceProblem text="This is the first problem!">
       <ChoiceQuestion text="This is the first question!">
         <Choice text="1. This is the correct answer!" correct="true" />
         <Choice text="2. This is the wrong answer!" />
@@ -15,8 +15,8 @@
         <Choice text="3. This is also wrong!" />
         <Choice text="4. All above is correct? No! lol" />
       </ChoiceQuestion>
-    </Problem>
-    <Problem text="This is the second problem, with text inputs!">
+    </ChoiceProblem>
+    <InputProblem text="This is the second problem, with text inputs!">
       <InputQuestion text="Input yes without no!" placeholder="Sample answer: Yes, No!" rule-validation="any">
         <MatchesRule phrase="Yes" />
         <MatchesRule phrase="Yeah" />
@@ -25,7 +25,7 @@
         <ContainsRule phrase="Yes" />
         <WithoutRule phrase="No" />
       </InputQuestion>
-    </Problem>
+    </InputProblem>
   </Level>
   <Level name="level-2"> 
   </Level>
