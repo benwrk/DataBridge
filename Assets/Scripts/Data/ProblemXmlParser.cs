@@ -9,95 +9,125 @@ namespace Data
     {
         public static List<Problem> GetProblems(int level)
         {
-            var document = new XmlDocument();
-            document.Load(Constants.XmlParser.Problems.ConfigFilePath);
-
-            var levels = document.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Problems.ConfigFilePath, new XmlReaderSettings
+            {
+                IgnoreComments = true
+            }));
+            
+            var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
             var selectedLevel = levels[level - 1];
 
             var problems = new List<Problem>();
 
             foreach (XmlElement problemElement in selectedLevel.ChildNodes)
             {
-                var questions = new List<Question>();
-                foreach (XmlElement questionElement in problemElement.ChildNodes)
+                var problemText = problemElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName);
+
+                switch (problemElement.Name)
                 {
-                    switch (questionElement.Name)
-                    {
-                        case "ChoiceQuestion":
-                            var choiceQuestion = new ChoiceQuestion()
+                    case Constants.XmlParser.Problems.ChoiceProblemTagName:
+                        var choiceProblem = new ChoiceProblem
+                        {
+                            Text = problemText,
+                            Questions = new List<ChoiceQuestion>()
+                        };
+
+                        problems.Add(choiceProblem);
+
+                        foreach (XmlElement choiceQuestionElement in problemElement.ChildNodes)
+                        {
+                            var choiceQuestion = new ChoiceQuestion
                             {
-                                Text = questionElement.GetAttribute("text"),
+                                Text = choiceQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                                 Choices = new List<Choice>()
                             };
-                            foreach (XmlElement choiceElement in questionElement.ChildNodes)
+
+                            choiceProblem.Questions.Add(choiceQuestion);
+
+                            foreach (XmlElement choiceElement in choiceQuestionElement.ChildNodes)
                             {
-                                choiceQuestion.Choices.Add(new Choice()
+                                choiceQuestion.Choices.Add(new Choice
                                 {
-                                    Text = choiceElement.GetAttribute("text"),
-                                    IsCorrect = choiceElement.HasAttribute("correct") && choiceElement.GetAttribute("correct").Equals("true")
+                                    Text = choiceElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
+                                    IsCorrect = choiceElement.HasAttribute(Constants.XmlParser.Problems.IsCorrectAttributeName) && choiceElement.GetAttribute(Constants.XmlParser.Problems.IsCorrectAttributeName).Equals("true")
                                 });
                             }
-                            questions.Add(choiceQuestion);
-                            break;
+                        }
 
-                        case "InputQuestion":
-                            var inputQuestion = new InputQuestion()
+                        break;
+
+                    case Constants.XmlParser.Problems.InputProblemTagName:
+                        var inputProblem = new InputProblem
+                        {
+                            Text = problemText,
+                            Questions = new List<InputQuestion>()
+                        };
+
+                        problems.Add(inputProblem);
+
+                        foreach (XmlElement inputQuestionElement in problemElement.ChildNodes)
+                        {
+                            var inputQuestion = new InputQuestion
                             {
-                                Text = questionElement.GetAttribute("text"),
-                                Placeholder = questionElement.GetAttribute("placeholder"),
+                                Text = inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
+                                Placeholder = inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.PlaceholderAttributeName),
                                 Rules = new List<Rule>()
                             };
-                            foreach (XmlElement ruleElement in questionElement.ChildNodes)
+
+                            inputProblem.Questions.Add(inputQuestion);
+
+                            foreach (XmlElement ruleElement in inputQuestionElement.ChildNodes)
                             {
-                                var phrase = ruleElement.GetAttribute("phrase");
+                                var phrase = ruleElement.GetAttribute(Constants.XmlParser.Problems.PhraseAttributeName);
+
                                 switch (ruleElement.Name)
                                 {
-                                    case "MatchesRule":
-                                        inputQuestion.Rules.Add(new MatchesRule()
+                                    case Constants.XmlParser.Problems.MatchesRuleTagName:
+                                        inputQuestion.Rules.Add(new MatchesRule
                                         {
                                             Phrase = phrase
                                         });
                                         break;
-                                    case "ContainsRule":
-                                        inputQuestion.Rules.Add(new ContainsRule()
+
+                                    case Constants.XmlParser.Problems.ContainsRuleTagName:
+                                        inputQuestion.Rules.Add(new ContainsRule
                                         {
                                             Phrase = phrase
                                         });
                                         break;
-                                    case "WithoutRule":
-                                        inputQuestion.Rules.Add(new WithoutRule()
+
+                                    case Constants.XmlParser.Problems.WithoutRuleTagName:
+                                        inputQuestion.Rules.Add(new WithoutRule
                                         {
                                             Phrase = phrase
                                         });
                                         break;
+
                                     default:
-                                        throw new XmlSchemaException();
+                                        throw new XmlSchemaException(Constants.XmlParser.XmlSchemaExceptionMessage);
                                 }
                             }
-                            switch (questionElement.GetAttribute("rule-validation"))
+
+                            switch (inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.RuleValidationOptionAttributeName))
                             {
-                                case "all":
+                                case Constants.XmlParser.Problems.ValidateAllAttributeValue:
                                     inputQuestion.RuleValidation = Rule.RuleValidationOption.All;
                                     break;
-                                case "any":
-                                    inputQuestion.RuleValidation = Rule.RuleValidationOption.Any;
-                                    break; ;
-                                default:
-                                    throw new XmlSchemaException();
-                            }
-                            questions.Add(inputQuestion);
-                            break;
 
-                        default:
-                            throw new XmlSchemaException();
-                    }
+                                case Constants.XmlParser.Problems.ValidateAnyAttributeValue:
+                                    inputQuestion.RuleValidation = Rule.RuleValidationOption.Any;
+                                    break;
+
+                                default:
+                                    throw new XmlSchemaException(Constants.XmlParser.XmlSchemaExceptionMessage);
+                            }
+                        }
+                        break;
+
+                    default:
+                        throw new XmlSchemaException(Constants.XmlParser.XmlSchemaExceptionMessage);
                 }
-                problems.Add(new Problem()
-                {
-                    Text = problemElement.GetAttribute("text"),
-                    Questions = questions
-                });
             }
 
             return problems;
