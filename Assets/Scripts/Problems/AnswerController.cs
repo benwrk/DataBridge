@@ -17,5 +17,10 @@ namespace Problems
         {
             _button.interactable = false;
         }
+
+        public bool IsCorrect(Text text)
+        {
+            return text.CompareTag("IsCorrect");
+        }
     }
 }

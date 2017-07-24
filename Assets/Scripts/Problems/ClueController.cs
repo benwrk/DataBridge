@@ -37,7 +37,7 @@ namespace Problems
             QuestionText.text = question.Text;
 
             var choices = GameUtility.CloneListWithRandomOrder(question.Choices);
-            Choice1.text = choices[0].Text;
+            Choice1.text = choices[0].Text;                        
             Choice2.text = choices[1].Text;
             Choice3.text = choices[2].Text;
             Choice4.text = choices[3].Text;
