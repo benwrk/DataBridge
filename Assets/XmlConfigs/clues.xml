@@ -2,9 +2,9 @@
 
 <CluesConfig>
   <Level name="level-1">
-    <Clue text="The first clue!" />
-    <Clue text="The second clue!" />
-    <Clue text="The third clue!" />
+    <Clue text="The first clue!" for-question="P1Q1" />
+    <Clue text="The second clue!" for-question="P1Q2" />
+    <Clue text="The third clue!" for-question="P1Q3" />
   </Level>
   <Level name="level-2">
   </Level>

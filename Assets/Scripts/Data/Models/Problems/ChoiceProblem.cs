@@ -4,6 +4,6 @@ namespace Data.Models.Problems
 {
     public class ChoiceProblem : Problem
     {
-        public List<ChoiceQuestion> Questions;
+        public IList<ChoiceQuestion> Questions;
     }
 }

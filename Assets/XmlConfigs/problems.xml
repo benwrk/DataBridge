@@ -2,14 +2,20 @@
 
 <ProblemsConfig>
   <Level name="level-1">
-    <ChoiceProblem text="This is the first problem!">
-      <ChoiceQuestion text="This is the first question!">
+    <ChoiceProblem id="P1" text="This is the first problem!">
+      <ChoiceQuestion id="P1Q1" text="This is the first question!">
         <Choice text="1. This is the correct answer!" correct="true" />
         <Choice text="2. This is the wrong answer!" />
         <Choice text="3. This is also wrong!" />
         <Choice text="4. All above is correct? No! lol" />
       </ChoiceQuestion>
-      <ChoiceQuestion text="This is the first question!">
+      <ChoiceQuestion id="P1Q2" text="This is the second question!">
+        <Choice text="1. This is the correct answer!" correct="true" />
+        <Choice text="2. This is the wrong answer!" />
+        <Choice text="3. This is also wrong!" />
+        <Choice text="4. All above is correct? No! lol" />
+      </ChoiceQuestion>
+      <ChoiceQuestion id="P1Q3" text="This is the third question!">
         <Choice text="1. This is the correct answer!" correct="true" />
         <Choice text="2. This is the wrong answer!" />
         <Choice text="3. This is also wrong!" />

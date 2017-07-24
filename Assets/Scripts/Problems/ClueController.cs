@@ -6,7 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Problems
 {
-    public class ChoiceProblemController : MonoBehaviour
+    public class ClueController : MonoBehaviour
     {
         public GameManager GameManager;
         public GameObject Controller;
@@ -21,9 +21,7 @@ namespace Problems
     
         public int ProblemNumber;
         private IList<ChoiceQuestion> _choiceQuestions;
-
         
-
         private void Start()
         {
             var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];

@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Problem> Problems;
-    public List<Clue> Clues;
+    public IList<Problem> Problems;
+    public IList<Clue> Clues;
 
     public int Level;
 
     private void Awake()
     {
-        Problems = ProblemXmlParser.GetProblems(Level);
-        Clues = ClueXmlParser.GetClues(Level);
+        Problems = XmlParser.GetProblems(Level);
+        Clues = XmlParser.GetClues(Level);
     }
 
     // Update is called once per frame
