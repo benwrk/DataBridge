@@ -34,5 +34,35 @@ public class InputHandler : MonoBehaviour {
 
 
 
+    //// Use this for initialization
+    //private void Start()
+    //{
+    //    Cursor.visible = false;
 
+    //}
+
+    //private void ToggleFreezeOfPlayer()
+    //{
+    //    Controller.GetComponent<PlayerController>().ToggleFreeze();
+    //    RbController.lookRotationEnabled = !RbController.lookRotationEnabled;
+    //    if (Cursor.lockState == CursorLockMode.Locked)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Confined;
+    //        Debug.Log(Cursor.lockState);
+    //    }
+    //    else if (Cursor.lockState == CursorLockMode.Confined)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //        Debug.Log(Cursor.lockState);
+    //    }
+
+    //    if (Cursor.visible)
+    //    {
+    //        Cursor.visible = false;
+    //    }
+    //    else if (!Cursor.visible)
+    //    {
+    //        Cursor.visible = true;
+    //    }
+    //}
 }
