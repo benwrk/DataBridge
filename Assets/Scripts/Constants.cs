@@ -1,6 +1,6 @@
 ﻿public static class Constants
 {
-    public const float ZeroGravityFloatStrength = 8.22f;
+    public const float ZeroGravityFloatStrength = 10f;
     public const float ZeroGravityRandomRotationStrength = 0.2f;
     public const float ZeroGravityRotationSpeed = 100f;
     public const float DefaultForwardSpeed = 5.0f;
