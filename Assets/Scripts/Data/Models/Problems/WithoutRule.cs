@@ -1,7 +1,7 @@
-﻿namespace Data.Models.Problems
+﻿using System;
+
+namespace Data.Models.Problems
 {
     public class WithoutRule : Rule
-    {
-        
-    }
+    {}
 }

@@ -1,20 +1,40 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
+using Data.Models.Clues;
 using Data.Models.Problems;
 
 namespace Data
 {
-    public class ProblemXmlParser
+    public static class XmlParser
     {
-        public static List<Problem> GetProblems(int level)
+        public static IList<Clue> GetClues(int level)
+        {
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Clues.ConfigFilePath, new XmlReaderSettings
+            {
+                IgnoreComments = true
+            }));
+
+            var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Clues.LevelTagName);
+            var selectedLevel = levels[level - 1];
+
+            return selectedLevel.ChildNodes.Cast<XmlElement>()
+                .Select(clueElement => new Clue
+                {
+                    Text = clueElement.GetAttribute(Constants.XmlParser.Clues.TextAttributeName)
+                }).ToList();
+        }
+
+        public static IList<Problem> GetProblems(int level)
         {
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(XmlReader.Create(Constants.XmlParser.Problems.ConfigFilePath, new XmlReaderSettings
             {
                 IgnoreComments = true
             }));
-            
+
             var levels = xmlDocument.GetElementsByTagName(Constants.XmlParser.Problems.LevelTagName);
             var selectedLevel = levels[level - 1];
 
@@ -39,20 +59,23 @@ namespace Data
                         {
                             var choiceQuestion = new ChoiceQuestion
                             {
-                                Text = choiceQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
+                                Text = choiceQuestionElement.GetAttribute(
+                                    Constants.XmlParser.Problems.TextAttributeName),
                                 Choices = new List<Choice>()
                             };
 
                             choiceProblem.Questions.Add(choiceQuestion);
 
                             foreach (XmlElement choiceElement in choiceQuestionElement.ChildNodes)
-                            {
                                 choiceQuestion.Choices.Add(new Choice
                                 {
                                     Text = choiceElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
-                                    IsCorrect = choiceElement.HasAttribute(Constants.XmlParser.Problems.IsCorrectAttributeName) && choiceElement.GetAttribute(Constants.XmlParser.Problems.IsCorrectAttributeName).Equals("true")
+                                    IsCorrect =
+                                        choiceElement.HasAttribute(Constants.XmlParser.Problems
+                                            .IsCorrectAttributeName) &&
+                                        choiceElement.GetAttribute(Constants.XmlParser.Problems.IsCorrectAttributeName)
+                                            .Equals("true")
                                 });
-                            }
                         }
 
                         break;
@@ -70,8 +93,11 @@ namespace Data
                         {
                             var inputQuestion = new InputQuestion
                             {
-                                Text = inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
-                                Placeholder = inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.PlaceholderAttributeName),
+                                Text =
+                                    inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
+                                Placeholder =
+                                    inputQuestionElement.GetAttribute(Constants.XmlParser.Problems
+                                        .PlaceholderAttributeName),
                                 Rules = new List<Rule>()
                             };
 
@@ -109,7 +135,8 @@ namespace Data
                                 }
                             }
 
-                            switch (inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.RuleValidationOptionAttributeName))
+                            switch (inputQuestionElement.GetAttribute(Constants.XmlParser.Problems
+                                .RuleValidationOptionAttributeName))
                             {
                                 case Constants.XmlParser.Problems.ValidateAllAttributeValue:
                                     inputQuestion.RuleValidation = Rule.RuleValidationOption.All;

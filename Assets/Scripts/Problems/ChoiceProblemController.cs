@@ -1,91 +1,91 @@
-﻿using Data.Models.Problems;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Data.Models.Problems;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class ChoiceProblemController : MonoBehaviour
+namespace Problems
 {
-    public GameManager GameManager;
-    public GameObject Controller;
-    public RigidbodyFirstPersonController RbController;
-
-    public Text QuestionText;
-    public Text ProblemText;
-    public Text Choice1;
-    public Text Choice2;
-    public Text Choice3;
-    public Text Choice4;
-    
-    public int ProblemNumber;
-    private List<ChoiceQuestion> _choiceQuestions;
-
-    private static List<T> GetRandomlyOrderedList<T>(List<T> originalList)
+    public class ChoiceProblemController : MonoBehaviour
     {
-        var originalListClone = new List<T>(originalList);
-        var randomizedList = new List<T>();
+        public GameManager GameManager;
+        public GameObject Controller;
+        public RigidbodyFirstPersonController RbController;
+
+        public Text QuestionText;
+        public Text ProblemText;
+    
+        public int ProblemNumber;
+        public List<Text> ChoiceTexts;
+
+        private IList<ChoiceQuestion> _randomizedChoiceQuestions;
         
-        var random = new System.Random();
-        while (originalListClone.Count > 0)
+        private void Start()
         {
-            var randomNumber = random.Next(0, originalListClone.Count - 1);
-            randomizedList.Add(originalListClone[randomNumber]);
-            originalListClone.RemoveAt(randomNumber);
+            var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];
+            ProblemText.text = problem.Text;
+
+            _randomizedChoiceQuestions = GameUtility.CloneListWithRandomOrder(problem.Questions);
+            LoadQuestion(_randomizedChoiceQuestions, 0);
         }
 
-        return randomizedList;
+        private void LoadQuestion(IList<ChoiceQuestion> questions, int questionNumber)
+        {
+            var question = questions[questionNumber];
+            QuestionText.text = question.Text;
+
+            var choices = GameUtility.CloneListWithRandomOrder(question.Choices);
+
+            for (var i = 0; i < ChoiceTexts.Count && i < choices.Count; i++)
+            {
+                ChoiceTexts[i].text = choices[i].Text;
+                if (choices[i].IsCorrect)
+                {
+                    ChoiceTexts[i].tag = Constants.CorrectChoiceTag;
+                }
+            }
+        }
+
+        /// <summary>
+        /// For Fungus to check if the selected choice is correct.
+        /// </summary>
+        /// <param name="selectedChoiceText">The text component of the selected choice</param>
+        /// <returns>True if the selected choice is the correct choice, false otherwise</returns>
+        public bool IsSelectedChoiceCorrect(Text selectedChoiceText)
+        {
+            return selectedChoiceText.CompareTag(Constants.CorrectChoiceTag);
+        }
+
+        //// Use this for initialization
+        //private void Start()
+        //{
+        //    Cursor.visible = false;
+
+        //}
+
+        //private void ToggleFreezeOfPlayer()
+        //{
+        //    Controller.GetComponent<PlayerController>().ToggleFreeze();
+        //    RbController.lookRotationEnabled = !RbController.lookRotationEnabled;
+        //    if (Cursor.lockState == CursorLockMode.Locked)
+        //    {
+        //        Cursor.lockState = CursorLockMode.Confined;
+        //        Debug.Log(Cursor.lockState);
+        //    }
+        //    else if (Cursor.lockState == CursorLockMode.Confined)
+        //    {
+        //        Cursor.lockState = CursorLockMode.Locked;
+        //        Debug.Log(Cursor.lockState);
+        //    }
+
+        //    if (Cursor.visible)
+        //    {
+        //        Cursor.visible = false;
+        //    }
+        //    else if (!Cursor.visible)
+        //    {
+        //        Cursor.visible = true;
+        //    }
+        //}
     }
-
-    private void Start()
-    {
-        var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];
-        ProblemText.text = problem.Text;
-
-        _choiceQuestions = GetRandomlyOrderedList(problem.Questions);
-        LoadQuestion(_choiceQuestions, 0);
-    }
-
-    private void LoadQuestion(IList<ChoiceQuestion> questions, int questionNumber)
-    {
-        var question = questions[questionNumber];
-        QuestionText.text = question.Text;
-
-        var choices = GetRandomlyOrderedList(question.Choices);
-        Choice1.text = choices[0].Text;
-        Choice2.text = choices[1].Text;
-        Choice3.text = choices[2].Text;
-        Choice4.text = choices[3].Text;
-    }
-
-    //// Use this for initialization
-    //private void Start()
-    //{
-    //    Cursor.visible = false;
-
-    //}
-
-    //private void ToggleFreezeOfPlayer()
-    //{
-    //    Controller.GetComponent<PlayerController>().ToggleFreeze();
-    //    RbController.lookRotationEnabled = !RbController.lookRotationEnabled;
-    //    if (Cursor.lockState == CursorLockMode.Locked)
-    //    {
-    //        Cursor.lockState = CursorLockMode.Confined;
-    //        Debug.Log(Cursor.lockState);
-    //    }
-    //    else if (Cursor.lockState == CursorLockMode.Confined)
-    //    {
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //        Debug.Log(Cursor.lockState);
-    //    }
-
-    //    if (Cursor.visible)
-    //    {
-    //        Cursor.visible = false;
-    //    }
-    //    else if (!Cursor.visible)
-    //    {
-    //        Cursor.visible = true;
-    //    }
-    //}
 }

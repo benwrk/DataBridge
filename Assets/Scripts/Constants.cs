@@ -1,6 +1,6 @@
 ﻿public static class Constants
 {
-    public const float ZeroGravityFloatStrength = 8.22f;
+    public const float ZeroGravityFloatStrength = 10f;
     public const float ZeroGravityRandomRotationStrength = 0.2f;
     public const float ZeroGravityRotationSpeed = 100f;
     public const float DefaultForwardSpeed = 5.0f;
@@ -9,6 +9,7 @@
     public const float DefaultJumpForce = 40f;
     public const float GrabbingCameraCenterRange = 3f;
     public const string GrabbableTag = "Pickable";
+    public const string CorrectChoiceTag = "Correct";
 
     public static class XmlParser
     {

@@ -2,7 +2,7 @@
 
 public class FloatingRigidBody : MonoBehaviour
 {
-    private void Update()
+    private void FixedUpdate()
     {
         if (GameStates.FloatingObjectsEnabled)
             FloatAround();
