@@ -14,23 +14,19 @@ namespace Problems
 
         public Text QuestionText;
         public Text ProblemText;
-        public Text Choice1;
-        public Text Choice2;
-        public Text Choice3;
-        public Text Choice4;
     
         public int ProblemNumber;
-        private IList<ChoiceQuestion> _choiceQuestions;
+        public List<Text> ChoiceTexts;
 
+        private IList<ChoiceQuestion> _randomizedChoiceQuestions;
         
-
         private void Start()
         {
             var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];
             ProblemText.text = problem.Text;
 
-            _choiceQuestions = GameUtility.CloneListWithRandomOrder(problem.Questions);
-            LoadQuestion(_choiceQuestions, 0);
+            _randomizedChoiceQuestions = GameUtility.CloneListWithRandomOrder(problem.Questions);
+            LoadQuestion(_randomizedChoiceQuestions, 0);
         }
 
         private void LoadQuestion(IList<ChoiceQuestion> questions, int questionNumber)
@@ -39,10 +35,25 @@ namespace Problems
             QuestionText.text = question.Text;
 
             var choices = GameUtility.CloneListWithRandomOrder(question.Choices);
-            Choice1.text = choices[0].Text;
-            Choice2.text = choices[1].Text;
-            Choice3.text = choices[2].Text;
-            Choice4.text = choices[3].Text;
+
+            for (var i = 0; i < ChoiceTexts.Count && i < choices.Count; i++)
+            {
+                ChoiceTexts[i].text = choices[i].Text;
+                if (choices[i].IsCorrect)
+                {
+                    ChoiceTexts[i].tag = Constants.CorrectChoiceTag;
+                }
+            }
+        }
+
+        /// <summary>
+        /// For Fungus to check if the selected choice is correct.
+        /// </summary>
+        /// <param name="selectedChoiceText">The text component of the selected choice</param>
+        /// <returns>True if the selected choice is the correct choice, false otherwise</returns>
+        public bool IsSelectedChoiceCorrect(Text selectedChoiceText)
+        {
+            return selectedChoiceText.CompareTag(Constants.CorrectChoiceTag);
         }
 
         //// Use this for initialization
