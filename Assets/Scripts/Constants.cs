@@ -9,6 +9,7 @@
     public const float DefaultJumpForce = 40f;
     public const float GrabbingCameraCenterRange = 3f;
     public const string GrabbableTag = "Pickable";
+    public const string CorrectChoiceTag = "Correct";
 
     public static class XmlParser
     {
