@@ -8,10 +8,30 @@ namespace Problems
     public class ChoiceProblemController : MonoBehaviour
     {
         private IList<ChoiceQuestion> _randomizedChoiceQuestions;
+
+        /// <summary>
+        ///     List of UnityEngine.UI.Text, for choices to be displayed in. (Unity Initialized)
+        /// </summary>
         public List<Text> ChoiceTexts;
+
+        /// <summary>
+        ///     The GameManager. (Unity Initialized)
+        /// </summary>
         public GameManager GameManager;
+
+        /// <summary>
+        ///     The problem number in 1-indexed format. (Unity Initialized)
+        /// </summary>
         public int ProblemNumber;
+
+        /// <summary>
+        ///     The UnityEngine.UI.Text component, for the problem text to be displayed in. (Unity Initialized)
+        /// </summary>
         public Text ProblemText;
+
+        /// <summary>
+        ///     The UnityEngine.UI.Text component, for the question text to be displayed in. (Unity Initialized)
+        /// </summary>
         public Text QuestionText;
 
         private void Start()
@@ -24,7 +44,7 @@ namespace Problems
         }
 
         /// <summary>
-        /// Load the given question onto the UI, and also tag the correct choice.
+        ///     Load the given question onto the UI, and also tag the correct choice.
         /// </summary>
         /// <param name="question">The question to be loaded.</param>
         private void LoadQuestionAndTagCorrectChoice(ChoiceQuestion question)
@@ -41,7 +61,7 @@ namespace Problems
         }
 
         /// <summary>
-        ///     For Fungus to check if the selected choice is correct.
+        ///     For Fungus to check if the selected choice is correct by verifying the tag on the supplied UI Text component.
         /// </summary>
         /// <param name="selectedChoiceText">The text component of the selected choice</param>
         /// <returns>True if the selected choice is the correct choice, false otherwise</returns>
