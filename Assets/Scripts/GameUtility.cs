@@ -10,7 +10,7 @@ public static class GameUtility
         var random = new System.Random();
         while (originalListClone.Count > 0)
         {
-            var randomNumber = random.Next(0, originalListClone.Count - 1);
+            var randomNumber = random.Next(0, originalListClone.Count);
             randomizedList.Add(originalListClone[randomNumber]);
             originalListClone.RemoveAt(randomNumber);
         }
