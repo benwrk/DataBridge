@@ -10,6 +10,7 @@
     public const float GrabbingCameraCenterRange = 3f;
     public const string GrabbableTag = "Pickable";
     public const string CorrectChoiceTag = "Correct";
+    public const string UntaggedTag = "Untagged";
 
     public static class XmlParser
     {

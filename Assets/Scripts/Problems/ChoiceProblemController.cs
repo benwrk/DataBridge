@@ -34,13 +34,17 @@ namespace Problems
         /// </summary>
         public Text QuestionText;
 
+        private int _questionOnDisplayIndex;
+
         private void Start()
         {
             var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];
             ProblemText.text = problem.Text;
 
             _randomizedChoiceQuestions = GameUtility.CloneListWithRandomOrder(problem.Questions);
-            LoadQuestionAndTagCorrectChoice(_randomizedChoiceQuestions[0]);
+
+            _questionOnDisplayIndex = 0;
+            LoadQuestionAndTagCorrectChoice(_randomizedChoiceQuestions[_questionOnDisplayIndex]);
         }
 
         /// <summary>
@@ -55,8 +59,7 @@ namespace Problems
             for (var i = 0; i < ChoiceTexts.Count && i < choices.Count; i++)
             {
                 ChoiceTexts[i].text = choices[i].Text;
-                if (choices[i].IsCorrect)
-                    ChoiceTexts[i].tag = Constants.CorrectChoiceTag;
+                ChoiceTexts[i].tag = choices[i].IsCorrect ? Constants.CorrectChoiceTag : Constants.UntaggedTag;
             }
         }
 
@@ -68,6 +71,26 @@ namespace Problems
         public bool IsSelectedChoiceCorrect(Text selectedChoiceText)
         {
             return selectedChoiceText.CompareTag(Constants.CorrectChoiceTag);
+        }
+
+        /// <summary>
+        ///     Change the question to the specified index.
+        /// </summary>
+        /// <param name="questionIndex">The index of the question to be changed to.</param>
+        private void ChangeQuestion(int questionIndex)
+        {
+            LoadQuestionAndTagCorrectChoice(_randomizedChoiceQuestions[questionIndex]);
+            _questionOnDisplayIndex = questionIndex;
+        }
+
+        /// <summary>
+        ///     For Fungus to change the displayed question.
+        /// </summary>
+        /// <returns>The index of the question that is changed to (in 0-indexed).</returns>
+        public int ChangeQuestion()
+        {
+            ChangeQuestion(++_questionOnDisplayIndex);
+            return _questionOnDisplayIndex;
         }
     }
 }
