@@ -7,6 +7,7 @@ namespace Problems
 {
     public class ChoiceProblemController : MonoBehaviour
     {
+        private int _questionOnDisplayIndex;
         private IList<ChoiceQuestion> _randomizedChoiceQuestions;
 
         /// <summary>
@@ -33,8 +34,6 @@ namespace Problems
         ///     The UnityEngine.UI.Text component, for the question text to be displayed in. (Unity Initialized)
         /// </summary>
         public Text QuestionText;
-
-        private int _questionOnDisplayIndex;
 
         private void Start()
         {
@@ -89,7 +88,9 @@ namespace Problems
         /// <returns>The index of the question that is changed to (in 0-indexed).</returns>
         public int ChangeQuestion()
         {
-            ChangeQuestion(++_questionOnDisplayIndex);
+            if (++_questionOnDisplayIndex >= _randomizedChoiceQuestions.Count)
+                _questionOnDisplayIndex = 0;
+            ChangeQuestion(_questionOnDisplayIndex);
             return _questionOnDisplayIndex;
         }
     }
