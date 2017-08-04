@@ -10,12 +10,14 @@ public class InputHandler : MonoBehaviour {
 
     private void Awake()
     {
+        
         _currentString = new List<string>();
     }
 
     public void EndEditListener(string s)
     {
-        _currentString.Add(s);
+        if (s != "")
+            _currentString.Add(s);
     }
 
     public void OnSubmit()
