@@ -6,31 +6,34 @@ using UnityEngine.EventSystems;
 
 public class InputHandler : MonoBehaviour {
 
-    string currentString;
+    List<string> _currentString;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    private void Awake()
+    {
+        _currentString = new List<string>();
+    }
 
     public void EndEditListener(string s)
     {
-        currentString = s;
+        _currentString.Add(s);
     }
 
-    public void PassString(string neededString)
+    public void OnSubmit()
     {
-        Debug.Log(currentString);
-        currentString = null;
         EventSystem.current.SetSelectedGameObject(null);
+        PassStringToVerify();
+        
+      //  _currentString = null;
     }
+
+    public /*List<string>*/ void PassStringToVerify()
+    {
+        // TODO call verifier 
+        Debug.Log(_currentString[0] + _currentString[1]);
+       // return _currentString;
+    }
+
+
 
 
 

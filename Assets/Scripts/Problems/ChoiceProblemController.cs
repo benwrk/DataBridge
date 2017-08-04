@@ -2,52 +2,68 @@
 using Data.Models.Problems;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Problems
 {
     public class ChoiceProblemController : MonoBehaviour
     {
-        public GameManager GameManager;
-        public GameObject Controller;
-        public RigidbodyFirstPersonController RbController;
+        private int _questionOnDisplayIndex;
+        private IList<ChoiceQuestion> _randomizedChoiceQuestions;
 
-        public Text QuestionText;
-        public Text ProblemText;
-    
-        public int ProblemNumber;
+        /// <summary>
+        ///     List of UnityEngine.UI.Text, for choices to be displayed in. (Unity Initialized)
+        /// </summary>
         public List<Text> ChoiceTexts;
 
-        private IList<ChoiceQuestion> _randomizedChoiceQuestions;
-        
+        /// <summary>
+        ///     The GameManager. (Unity Initialized)
+        /// </summary>
+        public GameManager GameManager;
+
+        /// <summary>
+        ///     The problem number in 1-indexed format. (Unity Initialized)
+        /// </summary>
+        public int ProblemNumber;
+
+        /// <summary>
+        ///     The UnityEngine.UI.Text component, for the problem text to be displayed in. (Unity Initialized)
+        /// </summary>
+        public Text ProblemText;
+
+        /// <summary>
+        ///     The UnityEngine.UI.Text component, for the question text to be displayed in. (Unity Initialized)
+        /// </summary>
+        public Text QuestionText;
+
         private void Start()
         {
             var problem = (ChoiceProblem) GameManager.Problems[ProblemNumber - 1];
             ProblemText.text = problem.Text;
 
             _randomizedChoiceQuestions = GameUtility.CloneListWithRandomOrder(problem.Questions);
-            LoadQuestion(_randomizedChoiceQuestions, 0);
+
+            _questionOnDisplayIndex = 0;
+            LoadQuestionAndTagCorrectChoice(_randomizedChoiceQuestions[_questionOnDisplayIndex]);
         }
 
-        private void LoadQuestion(IList<ChoiceQuestion> questions, int questionNumber)
+        /// <summary>
+        ///     Load the given question onto the UI, and also tag the correct choice.
+        /// </summary>
+        /// <param name="question">The question to be loaded.</param>
+        private void LoadQuestionAndTagCorrectChoice(ChoiceQuestion question)
         {
-            var question = questions[questionNumber];
             QuestionText.text = question.Text;
-
             var choices = GameUtility.CloneListWithRandomOrder(question.Choices);
 
             for (var i = 0; i < ChoiceTexts.Count && i < choices.Count; i++)
             {
                 ChoiceTexts[i].text = choices[i].Text;
-                if (choices[i].IsCorrect)
-                {
-                    ChoiceTexts[i].tag = Constants.CorrectChoiceTag;
-                }
+                ChoiceTexts[i].tag = choices[i].IsCorrect ? Constants.CorrectChoiceTag : Constants.UntaggedTag;
             }
         }
 
         /// <summary>
-        /// For Fungus to check if the selected choice is correct.
+        ///     For Fungus to check if the selected choice is correct by verifying the tag on the supplied UI Text component.
         /// </summary>
         /// <param name="selectedChoiceText">The text component of the selected choice</param>
         /// <returns>True if the selected choice is the correct choice, false otherwise</returns>
@@ -56,36 +72,26 @@ namespace Problems
             return selectedChoiceText.CompareTag(Constants.CorrectChoiceTag);
         }
 
-        //// Use this for initialization
-        //private void Start()
-        //{
-        //    Cursor.visible = false;
+        /// <summary>
+        ///     Change the question to the specified index.
+        /// </summary>
+        /// <param name="questionIndex">The index of the question to be changed to.</param>
+        private void ChangeQuestion(int questionIndex)
+        {
+            LoadQuestionAndTagCorrectChoice(_randomizedChoiceQuestions[questionIndex]);
+            _questionOnDisplayIndex = questionIndex;
+        }
 
-        //}
-
-        //private void ToggleFreezeOfPlayer()
-        //{
-        //    Controller.GetComponent<PlayerController>().ToggleFreeze();
-        //    RbController.lookRotationEnabled = !RbController.lookRotationEnabled;
-        //    if (Cursor.lockState == CursorLockMode.Locked)
-        //    {
-        //        Cursor.lockState = CursorLockMode.Confined;
-        //        Debug.Log(Cursor.lockState);
-        //    }
-        //    else if (Cursor.lockState == CursorLockMode.Confined)
-        //    {
-        //        Cursor.lockState = CursorLockMode.Locked;
-        //        Debug.Log(Cursor.lockState);
-        //    }
-
-        //    if (Cursor.visible)
-        //    {
-        //        Cursor.visible = false;
-        //    }
-        //    else if (!Cursor.visible)
-        //    {
-        //        Cursor.visible = true;
-        //    }
-        //}
+        /// <summary>
+        ///     For Fungus to change the displayed question.
+        /// </summary>
+        /// <returns>The index of the question that is changed to (in 0-indexed).</returns>
+        public int ChangeQuestion()
+        {
+            if (++_questionOnDisplayIndex >= _randomizedChoiceQuestions.Count)
+                _questionOnDisplayIndex = 0;
+            ChangeQuestion(_questionOnDisplayIndex);
+            return _questionOnDisplayIndex;
+        }
     }
 }
