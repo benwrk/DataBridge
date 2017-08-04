@@ -7,7 +7,8 @@ namespace BotCutSceneMovement.BotScript
         private bool _animatorFreeze;
         private Animator _botAnimator;
         public GameObject Controller;
-        private bool _gravity;
+       // private bool _gravity;
+        //public
         
         // Use this for initialization
         private void Start()
@@ -21,10 +22,12 @@ namespace BotCutSceneMovement.BotScript
         private void ToggleFreezeOfPlayer(bool freeze)
         {
             Controller.GetComponent<PlayerController>().ToggleFreeze();
+            _animatorFreeze =Controller.GetComponent<PlayerController>().IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
+        }
 
-            _animatorFreeze =
-                Controller.GetComponent<PlayerController>()
-                    .IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
+        private void FixedUpdate()
+        {
+            
         }
     }
 }
