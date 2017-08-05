@@ -1,23 +1,16 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using MessageLibrary;
 using SharedMemory;
-
 using UnityEngine;
-using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
-using Object = System.Object;
 
 namespace SimpleWebBrowser
 {
-
-
-
     public class BrowserEngine
     {
         private TcpClient _clientSocket;
@@ -26,7 +19,7 @@ namespace SimpleWebBrowser
 
         private Process _pluginProcess;
 
-        private static Object sPixelLock;
+        private static object sPixelLock;
 
         public Texture2D BrowserTexture = null;
         public bool Initialized = false;
@@ -37,10 +30,12 @@ namespace SimpleWebBrowser
 
         //Image buffer
         private byte[] _bufferBytes = null;
+
         private long _arraySize = 0;
 
         //TCP buffer
         const int READ_BUFFER_SIZE = 2048;
+
         private byte[] readBuffer = new byte[READ_BUFFER_SIZE];
 
         #region Status events
@@ -81,7 +76,6 @@ namespace SimpleWebBrowser
         #endregion
 
 
-
         #region Init
 
         //A really hackish way to avoid thread error. Should be better way
@@ -100,13 +94,12 @@ namespace SimpleWebBrowser
 
             tcp = ret;
             return true;
-
         }
 
 
-        public void InitPlugin(int width, int height, string sharedfilename, int port, string initialURL,bool enableWebRTC)
+        public void InitPlugin(int width, int height, string sharedfilename, int port, string initialURL,
+            bool enableWebRTC)
         {
-
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
             //Also change the path in deployment script.
@@ -120,7 +113,7 @@ namespace SimpleWebBrowser
 
 
         //HACK
-        string AssemblyPath=System.Reflection.Assembly.GetExecutingAssembly().Location;
+        string AssemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
         //log this for error handling
         Debug.Log("Assembly path:"+AssemblyPath);
 
@@ -129,17 +122,15 @@ namespace SimpleWebBrowser
         AssemblyPath = Directory.GetParent(AssemblyPath).FullName; //<project>_Data
         AssemblyPath = Directory.GetParent(AssemblyPath).FullName;//required
 
-        string PluginServerPath=AssemblyPath+@"\PluginServer";
+        string PluginServerPath = AssemblyPath+@"\PluginServer";
 #endif
 #endif
-
 
 
             Debug.Log("Starting server from:" + PluginServerPath);
 
             kWidth = width;
             kHeight = height;
-
 
 
             _sharedFileName = sharedfilename;
@@ -149,7 +140,6 @@ namespace SimpleWebBrowser
 
             if (BrowserTexture == null)
                 BrowserTexture = new Texture2D(kWidth, kHeight, TextureFormat.BGRA32, false);
-
 
 
             sPixelLock = new object();
@@ -169,10 +159,8 @@ namespace SimpleWebBrowser
                             WorkingDirectory = PluginServerPath,
                             FileName = PluginServerPath + @"\SharedPluginServer.exe",
                             Arguments = args
-
                         }
                     };
-
 
 
                     _pluginProcess.Start();
@@ -187,9 +175,6 @@ namespace SimpleWebBrowser
 
                 connected = ConnectTcp(out _clientSocket);
             }
-
-
-
         }
 
         private string BuildParamsString()
@@ -208,7 +193,6 @@ namespace SimpleWebBrowser
         }
 
         #endregion
-
 
 
         #region SendEvents
@@ -265,7 +249,6 @@ namespace SimpleWebBrowser
             {
                 _clientSocket.GetStream().Write(b, 0, b.Length);
             }
-
         }
 
         public void SendDialogResponse(bool ok, string dinput)
@@ -293,7 +276,6 @@ namespace SimpleWebBrowser
             {
                 _clientSocket.GetStream().Write(b, 0, b.Length);
             }
-
         }
 
         public void SendQueryResponse(string response)
@@ -324,7 +306,6 @@ namespace SimpleWebBrowser
 
         public void SendCharEvent(int character, KeyboardEventType type)
         {
-
             KeyboardEvent keyboardEvent = new KeyboardEvent()
             {
                 Type = type,
@@ -348,7 +329,6 @@ namespace SimpleWebBrowser
 
         public void SendMouseEvent(MouseMessage msg)
         {
-
             EventPacket ep = new EventPacket
             {
                 Event = msg,
@@ -363,7 +343,6 @@ namespace SimpleWebBrowser
             {
                 _clientSocket.GetStream().Write(b, 0, b.Length);
             }
-
         }
 
         public void SendExecuteJSEvent(string js)
@@ -389,7 +368,6 @@ namespace SimpleWebBrowser
             {
                 _clientSocket.GetStream().Write(b, 0, b.Length);
             }
-
         }
 
         public void SendPing()
@@ -398,7 +376,6 @@ namespace SimpleWebBrowser
             {
                 Type = GenericEventType.Navigate, //could be any
                 GenericType = BrowserEventType.Ping,
-
             };
 
             EventPacket ep = new EventPacket()
@@ -418,8 +395,6 @@ namespace SimpleWebBrowser
             }
         }
 
-
-
         #endregion
 
 
@@ -429,7 +404,7 @@ namespace SimpleWebBrowser
         /// Used to run JS on initialization, for example, to set CSS
         /// </summary>
         /// <param name="js">JS code</param>
-       public void RunJSOnce(string js )
+        public void RunJSOnce(string js)
         {
             _needToRunOnce = true;
             _runOnceJS = js;
@@ -437,17 +412,11 @@ namespace SimpleWebBrowser
 
         #endregion
 
-        
-
-
 
         public void UpdateTexture()
         {
-
             if (Initialized)
             {
-
-
                 if (_bufferBytes == null)
                 {
                     long arraySize = _mainTexArray.Length;
@@ -458,10 +427,8 @@ namespace SimpleWebBrowser
 
                 lock (sPixelLock)
                 {
-
                     BrowserTexture.LoadRawTextureData(_bufferBytes);
                     BrowserTexture.Apply();
-
                 }
 
                 SendPing();
@@ -481,7 +448,6 @@ namespace SimpleWebBrowser
                     //so we have just to wait while the plugin started.
 
 
-
                     //string processName = _pluginProcess.ProcessName;//could be InvalidOperationException
                     //foreach (System.Diagnostics.Process clsProcess in System.Diagnostics.Process.GetProcesses())
                     //{
@@ -490,10 +456,8 @@ namespace SimpleWebBrowser
                         Thread.Sleep(200); //give it some time to initialize
                         try
                         {
-
-
                             //Connect
-                           // _clientSocket = new TcpClient("127.0.0.1", _port);
+                            // _clientSocket = new TcpClient("127.0.0.1", _port);
                             //start listen
                             _clientSocket.GetStream()
                                 .BeginRead(readBuffer, 0, READ_BUFFER_SIZE, new AsyncCallback(StreamReceiver), null);
@@ -508,18 +472,13 @@ namespace SimpleWebBrowser
                             //SharedMem and TCP exceptions
                             Debug.Log("Exception on init:" + ex.Message + ".Waiting for plugin server");
                         }
-
-
-
                     }
                     //}
                 }
                 catch (Exception)
                 {
-
                     //InvalidOperationException
                 }
-
             }
         }
 

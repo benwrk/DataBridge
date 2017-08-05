@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickable
   - Correct
+  - Bot
   layers:
   - Default
   - TransparentFX

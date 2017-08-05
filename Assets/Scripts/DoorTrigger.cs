@@ -8,7 +8,7 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other == Player.GetComponent<Collider>())
+        if (other == Player.GetComponent<Collider>() || GameObject.FindGameObjectWithTag("bot"))
             ControlledObject.GetComponent<Animator>().SetBool(BoolName, true);
     }
 

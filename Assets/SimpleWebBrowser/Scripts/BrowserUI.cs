@@ -1,29 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 namespace SimpleWebBrowser
 {
-
-
-
     public class BrowserUI : MonoBehaviour
     {
-        [SerializeField]
-        public Canvas MainCanvas = null;
-        [SerializeField]
-        public InputField UrlField;
-        [SerializeField]
-        public Image Background;
-        [SerializeField]
-        public Button Back;
-        [SerializeField]
-        public Button Forward;
-
-
+        [SerializeField] public Canvas MainCanvas = null;
+        [SerializeField] public InputField UrlField;
+        [SerializeField] public Image Background;
+        [SerializeField] public Button Back;
+        [SerializeField] public Button Forward;
         [HideInInspector] public bool KeepUIVisible = false;
-
-
+        
         public void InitPrefabLinks()
         {
             //3D
@@ -45,8 +33,6 @@ namespace SimpleWebBrowser
             if (Forward == null)
                 Forward = gameObject.transform.Find("Forward").gameObject.GetComponent<Button>();
         }
-
-
 
 
         public void Show()
@@ -80,8 +66,6 @@ namespace SimpleWebBrowser
         }
 
 
-
-
         void Update()
         {
             if (UrlField.isFocused && !KeepUIVisible)
@@ -89,7 +73,5 @@ namespace SimpleWebBrowser
                 Show();
             }
         }
-
-
     }
 }

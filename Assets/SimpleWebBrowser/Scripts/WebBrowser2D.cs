@@ -1,22 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using System.Text;
-//using System.Diagnostics;
 using MessageLibrary;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SimpleWebBrowser
 {
-
-
-
-
     public class WebBrowser2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,
         IPointerUpHandler
     {
-
         #region General
 
         [Header("General settings")] public int Width = 1024;
@@ -35,48 +28,41 @@ namespace SimpleWebBrowser
 
         public bool EnableWebRTC = false;
 
-        [Multiline]
-        public string JSInitializationCode = "";
+        [Multiline] public string JSInitializationCode = "";
 
         #endregion
 
 
-        [Header("2D setup")]
-        [SerializeField]
-        public RawImage Browser2D = null;
+        [Header("2D setup")] [SerializeField] public RawImage Browser2D = null;
 
 
-        [Header("UI settings")]
-        [SerializeField]
-        public BrowserUI mainUIPanel;
+        [Header("UI settings")] [SerializeField] public BrowserUI mainUIPanel;
 
         public bool KeepUIVisible = false;
 
-        [Header("Dialog settings")]
-        [SerializeField]
-        public GameObject DialogPanel;
-        [SerializeField]
-        public Text DialogText;
-        [SerializeField]
-        public Button OkButton;
-        [SerializeField]
-        public Button YesButton;
-        [SerializeField]
-        public Button NoButton;
-        [SerializeField]
-        public InputField DialogPrompt;
+        [Header("Dialog settings")] [SerializeField] public GameObject DialogPanel;
+        [SerializeField] public Text DialogText;
+        [SerializeField] public Button OkButton;
+        [SerializeField] public Button YesButton;
+        [SerializeField] public Button NoButton;
+        [SerializeField] public InputField DialogPrompt;
 
         //dialog states - threading
         private bool _showDialog = false;
+
         private string _dialogMessage = "";
         private string _dialogPrompt = "";
+
         private DialogEventType _dialogEventType;
+
         //query - threading
         private bool _startQuery = false;
+
         private string _jsQueryString = "";
 
         //status - threading
         private bool _setUrl = false;
+
         private string _setUrlString = "";
 
         //input
@@ -95,11 +81,7 @@ namespace SimpleWebBrowser
         private Material _mainMaterial;
 
 
-
-
-
         private BrowserEngine _mainEngine;
-
 
 
         private bool _focused = false;
@@ -131,7 +113,6 @@ namespace SimpleWebBrowser
                 NoButton = DialogPanel.transform.Find("No").gameObject.GetComponent<Button>();
             if (DialogPrompt == null)
                 DialogPrompt = DialogPanel.transform.Find("Prompt").gameObject.GetComponent<InputField>();
-
         }
 
 
@@ -149,8 +130,8 @@ namespace SimpleWebBrowser
                 System.Random r = new System.Random();
                 Port = 8000 + r.Next(1000);
             }
-            
-            _mainEngine.InitPlugin(Width, Height, MemoryFile, Port, InitialURL,EnableWebRTC);
+
+            _mainEngine.InitPlugin(Width, Height, MemoryFile, Port, InitialURL, EnableWebRTC);
             //run initialization
             if (JSInitializationCode.Trim() != "")
                 _mainEngine.RunJSOnce(JSInitializationCode);
@@ -168,10 +149,6 @@ namespace SimpleWebBrowser
             Browser2D.uvRect = new Rect(0f, 0f, 1f, -1f);
 
 
-
-
-
-
             // _mainInput = MainUrlInput.GetComponent<Input>();
             mainUIPanel.KeepUIVisible = KeepUIVisible;
             if (!KeepUIVisible)
@@ -183,9 +160,6 @@ namespace SimpleWebBrowser
             _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
 
             DialogPanel.SetActive(false);
-
-
-
         }
 
         private void _mainEngine_OnPageLoaded(string url)
@@ -216,12 +190,10 @@ namespace SimpleWebBrowser
             _dialogEventType = type;
             _dialogMessage = message;
             _dialogPrompt = prompt;
-
         }
 
         private void ShowDialog()
         {
-
             switch (_dialogEventType)
             {
                 case DialogEventType.Alert:
@@ -265,7 +237,6 @@ namespace SimpleWebBrowser
         {
             DialogPanel.SetActive(false);
             _mainEngine.SendDialogResponse(result, DialogPrompt.text);
-
         }
 
         public void RunJavaScript(string js)
@@ -281,7 +252,6 @@ namespace SimpleWebBrowser
         {
             // MainUrlInput.isFocused
             _mainEngine.SendNavigateEvent(mainUIPanel.UrlField.text, false, false);
-
         }
 
         public void GoBackForward(bool forward)
@@ -293,8 +263,6 @@ namespace SimpleWebBrowser
         }
 
         #endregion
-
-
 
 
         #region Events 
@@ -363,7 +331,6 @@ namespace SimpleWebBrowser
 
         public void OnPointerDown(PointerEventData data)
         {
-
             if (_mainEngine.Initialized)
             {
                 var _raycaster = GetComponentInParent<GraphicRaycaster>();
@@ -391,18 +358,12 @@ namespace SimpleWebBrowser
                         break;
                     }
                 }
-
-
             }
-
         }
-
-
 
 
         public void OnPointerUp(PointerEventData data)
         {
-
             if (_mainEngine.Initialized)
             {
                 var _raycaster = GetComponentInParent<GraphicRaycaster>();
@@ -414,7 +375,8 @@ namespace SimpleWebBrowser
                 {
                     case PointerEventData.InputButton.Left:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left, MouseEventType.ButtonUp);
+                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left,
+                            MouseEventType.ButtonUp);
                         break;
                     }
                     case PointerEventData.InputButton.Right:
@@ -430,13 +392,8 @@ namespace SimpleWebBrowser
                         break;
                     }
                 }
-
-
             }
-
         }
-
-
 
         #endregion
 
@@ -444,7 +401,6 @@ namespace SimpleWebBrowser
 
         private Vector2 GetScreenCoords(GraphicRaycaster ray, StandaloneInputModule input)
         {
-
             Vector2 localPos; // Mouse position  
             RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, Input.mousePosition,
                 ray.eventCamera, out localPos);
@@ -455,11 +411,10 @@ namespace SimpleWebBrowser
             //Debug.Log("x:"+localPos.x+",y:"+localPos.y);
 
             //now recalculate to texture
-            localPos.x = (localPos.x*Width)/trns.rect.width;
-            localPos.y = (localPos.y*Height)/trns.rect.height;
+            localPos.x = (localPos.x * Width) / trns.rect.width;
+            localPos.y = (localPos.y * Height) / trns.rect.height;
 
             return localPos;
-
         }
 
         private void SendMouseButtonEvent(int x, int y, MouseButton btn, MouseEventType type)
@@ -480,7 +435,7 @@ namespace SimpleWebBrowser
         {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-            scroll = scroll*_mainEngine.BrowserTexture.height;
+            scroll = scroll * _mainEngine.BrowserTexture.height;
 
             int scInt = (int) scroll;
 
@@ -512,7 +467,6 @@ namespace SimpleWebBrowser
         // Update is called once per frame
         void Update()
         {
-
             _mainEngine.UpdateTexture();
 
             #region 2D mouse
@@ -521,7 +475,6 @@ namespace SimpleWebBrowser
             {
                 //GetScreenCoords(true);
             }
-
 
             #endregion
 
@@ -544,9 +497,7 @@ namespace SimpleWebBrowser
             {
                 _setUrl = false;
                 mainUIPanel.UrlField.text = _setUrlString;
-
             }
-
 
 
             if (_focused && !mainUIPanel.UrlField.isFocused) //keys
@@ -554,25 +505,19 @@ namespace SimpleWebBrowser
                 foreach (char c in Input.inputString)
                 {
                     _mainEngine.SendCharEvent((int) c, KeyboardEventType.CharKey);
-
-
                 }
                 ProcessKeyEvents();
-
-
             }
-
         }
 
         #region Keys
 
         private void ProcessKeyEvents()
         {
-            foreach (KeyCode k in Enum.GetValues(typeof (KeyCode)))
+            foreach (KeyCode k in Enum.GetValues(typeof(KeyCode)))
             {
                 CheckKey(k);
             }
-
         }
 
         private void CheckKey(KeyCode code)
@@ -589,7 +534,5 @@ namespace SimpleWebBrowser
         {
             _mainEngine.Shutdown();
         }
-
-
     }
 }
