@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Problems
 {
+    /// <summary>
+    ///     The controller script for the choice problem, designed to be added to UI Canvas of the each Problem
+    /// </summary>
     public class ChoiceProblemController : MonoBehaviour
     {
         private int _questionOnDisplayIndex;
