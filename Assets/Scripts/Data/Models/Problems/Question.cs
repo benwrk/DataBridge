@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
-
-namespace Data.Models.Problems
+﻿namespace Data.Models.Problems
 {
     public abstract class Question
     {
-        public string Text;
+        /// <summary>
+        ///     The question ID.
+        /// </summary>
         public string Id;
+
+        /// <summary>
+        ///     The question text.
+        /// </summary>
+        public string Text;
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace Data.Models.Problems
+﻿namespace Data.Models.Problems
 {
     /// <summary>
-    /// To pass this rule, the candidate must not contains this rule's phrase.
+    ///     To pass this rule, the candidate must not contains this rule's phrase.
     /// </summary>
     public class WithoutRule : Rule
-    {}
+    {
+    }
 }
