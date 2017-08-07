@@ -1,4 +1,6 @@
-﻿namespace Data.Models.Problems
+﻿using System.Collections.Generic;
+
+namespace Data.Models.Problems
 {
     public abstract class Question
     {
