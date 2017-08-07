@@ -4081,6 +4081,21 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
   m_PrefabInternal: {fileID: 1405540290}
+--- !u!54 &94625780
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94625778}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &94625781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4088,7 +4103,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 94625778}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.9999999, y: 1.6651053, z: 0.9999999}
@@ -11560,6 +11575,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 434109889}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &256975941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18312,6 +18328,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1347549667}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &439072850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54820,6 +54837,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1433889487}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &1282388853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59638,15 +59656,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.7886265
+      value: -0.78847086
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 113.97914
+      value: 113.958954
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.4371757
+      value: 0.43683004
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59670,15 +59688,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 12.639835
+      value: 12.715784
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -160.78271
+      value: -160.77936
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -177.53012
+      value: -177.52939
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59698,39 +59716,39 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000028984024
+      value: -0.0000002849134
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000074234595
+      value: 0.000007297272
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -2.4878764
+      value: -2.4878762
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.60308456
+      value: 0.6030816
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0000034623695
+      value: -0.000006166865
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.00000010782017
+      value: 0.00000019203966
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.8918482
+      value: -0.8918502
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.017428558
+      value: -0.017430918
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 1.1518604
+      value: 1.1518643
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59742,7 +59760,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.1308465
+      value: -1.1308484
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59750,7 +59768,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.4997329
+      value: -1.4997336
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -59798,27 +59816,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.23
+      value: 34.28
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.04
+      value: 49.88
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99957323
+      value: 0.7094293
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.029212445
+      value: 0.70477664
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 183.34799
+      value: 90.37701
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
+      propertyPath: m_TagString
+      value: Bot
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c0b3736573fda14c8cc1cc347e1d865, type: 3}
@@ -69034,6 +69060,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 366619924}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &1637751727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69325,6 +69352,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 235984744}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 94625778}
 --- !u!114 &1643225558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69339,6 +69367,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1662672121}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 94625778}
 --- !u!114 &1643225559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69353,6 +69382,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1457431764}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 94625778}
 --- !u!4 &1644089463 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5e643d7a68f251b4aad38270bde18595, type: 3}
@@ -79558,6 +79588,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1760081801}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &1805084271
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -87803,6 +87834,7 @@ MonoBehaviour:
   BoolName: IsOpen
   ControlledObject: {fileID: 1426623436}
   Player: {fileID: 1945947777}
+  BotGameObject: {fileID: 0}
 --- !u!65 &2014788995
 BoxCollider:
   m_ObjectHideFlags: 0
