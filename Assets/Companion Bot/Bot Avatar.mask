@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Bot Avatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Main
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Cover
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Cover/Cover_end
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Crane Arm End
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Crane Arm End/Crane Arm Mid
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Crane Arm End/Crane Arm Mid/Crane Arm Head
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Crane Arm End/Crane Arm Mid/Crane Arm Head/Crane
+      Arm Head_end
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Head
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Head/L_Ears
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Head/L_Ears/L_Ears_end
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Head/R_Ears
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/Head/R_Ears/R_Ears_end
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/L_Arm
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/L_Arm/L_Arm_end
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/R_Arm
+    m_Weight: 1
+  - m_Path: Armature/Main/Body 1/R_Arm/R_Arm_end
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: Ears
+    m_Weight: 1
+  - m_Path: Face
+    m_Weight: 1
+  - m_Path: Rings
+    m_Weight: 1

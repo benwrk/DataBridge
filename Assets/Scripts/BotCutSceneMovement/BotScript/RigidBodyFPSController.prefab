@@ -11,22 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1443907241778014}
   m_IsPrefabParent: 1
---- !u!1 &1031983523126924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4840494522645494}
-  - component: {fileID: 114171058005476940}
-  m_Layer: 0
-  m_Name: PlayerCharacter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1103484723360636
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +45,7 @@ GameObject:
   - component: {fileID: 114396215015955086}
   m_Layer: 2
   m_Name: RigidBodyFPSController
-  m_TagString: Player
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,15 +56,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443907241778014}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.22, y: 1.87, z: 28.73}
+  m_LocalRotation: {x: -0, y: 0.029207246, z: -0, w: 0.9995734}
+  m_LocalPosition: {x: 46.19, y: 0.05, z: 31.34}
   m_LocalScale: {x: 1, y: 1.118335, z: 1}
   m_Children:
   - {fileID: 4753852637670060}
-  - {fileID: 4840494522645494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.3470001, z: 0}
 --- !u!4 &4753852637670060
 Transform:
   m_ObjectHideFlags: 1
@@ -93,19 +76,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4206962593439650}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4840494522645494
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1031983523126924}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.22, y: -1.6721288, z: -28.73}
-  m_LocalScale: {x: 1, y: 0.8941865, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4206962593439650}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20727081663586744
 Camera:
@@ -136,7 +106,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -176,24 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27b971978a448a4ab96c00e0060f62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114171058005476940
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1031983523126924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: Hitler
-  nameColor: {r: 1, g: 1, b: 1, a: 1}
-  soundEffect: {fileID: 0}
-  portraits: []
-  portraitsFace: 0
-  setSayDialog: {fileID: 0}
-  description: 
 --- !u!114 &114396215015955086
 MonoBehaviour:
   m_ObjectHideFlags: 1
