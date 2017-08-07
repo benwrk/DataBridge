@@ -2,6 +2,9 @@
 {
     public class Clue
     {
+        /// <summary>
+        /// The clue text.
+        /// </summary>
         public string Text;
     }
 }
