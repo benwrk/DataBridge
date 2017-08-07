@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using Data.Models.Problems;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Problems
 {
