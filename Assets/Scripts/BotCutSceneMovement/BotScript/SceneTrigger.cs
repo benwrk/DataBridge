@@ -2,7 +2,7 @@
 
 namespace BotCutSceneMovement.BotScript
 {
-    public class FirstSceneTrigger : MonoBehaviour {
+    public class SceneTrigger : MonoBehaviour {
         
         bool EnteredTheRoom;
         public GameObject Player;
