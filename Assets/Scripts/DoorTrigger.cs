@@ -5,38 +5,20 @@ public class DoorTrigger : MonoBehaviour
     public string BoolName;
     public GameObject ControlledObject;
     public GameObject Player;
-    public GameObject BotGameObject;
-    private static bool set = false;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (set == true)
-           return;
-        if (other.tag == "Bot")
+        if (other.CompareTag("Bot") || other == Player.GetComponent<Collider>())
         {
-          
-            Animator a = ControlledObject.GetComponent<Animator>();
-          
-            Debug.Log("success");
-            a.SetBool(BoolName, true);
-            set = true;
+            ControlledObject.GetComponent<Animator>().SetBool(BoolName, true);
         }
-            
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (set == true)
-            return;
-        if (other.tag == "Bot")
+        if (other.CompareTag("Bot") || other == Player.GetComponent<Collider>())
         {
-            Debug.Log("close door");
             ControlledObject.GetComponent<Animator>().SetBool(BoolName, false);
         }
-
-    }
-
-    void Update()
-    {
-        set = false;
     }
 }
