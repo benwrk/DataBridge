@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CustomInputModule : StandaloneInputModule
+/// <summary>
+///     A custom input module for the EventSystem that enables the user to interact with the in-game Unity UI objects with the crosshair.
+///     Refer to https://forum.unity3d.com/threads/fake-mouse-position-in-4-6-ui-answered.283748/ for more information.
+/// </summary>
+public class FpsUiAwareInputModule : StandaloneInputModule
 {
     private Vector2 _cursorPosition;
 
@@ -10,31 +14,30 @@ public class CustomInputModule : StandaloneInputModule
         _cursorPosition = Input.mousePosition;
     }
 
-    protected new bool GetPointerData(int id, out PointerEventData data, bool create)
+    private new bool GetPointerData(int id, out PointerEventData data, bool create)
     {
-        if (!m_PointerData.TryGetValue(id, out data) && create)
+        if (m_PointerData.TryGetValue(id, out data) || !create)
+            return false;
+
+        data = new PointerEventData(eventSystem)
         {
-            data = new PointerEventData(eventSystem)
-            {
-                pointerId = id
-            };
-            m_PointerData.Add(id, data);
-            return true;
-        }
-        return false;
+            pointerId = id
+        };
+        m_PointerData.Add(id, data);
+        return true;
     }
 
-    private new void CopyFromTo(PointerEventData @from, PointerEventData @to)
+    private new void CopyFromTo(PointerEventData from, PointerEventData to)
     {
-        @to.position = @from.position;
-        @to.delta = @from.delta;
-        @to.scrollDelta = @from.scrollDelta;
-        @to.pointerCurrentRaycast = @from.pointerPressRaycast;
+        to.position = from.position;
+        to.delta = from.delta;
+        to.scrollDelta = from.scrollDelta;
+        to.pointerCurrentRaycast = from.pointerPressRaycast;
     }
 
     private readonly MouseState _mouseState = new MouseState();
 
-    protected override MouseState GetMousePointerEventData()
+    protected override MouseState GetMousePointerEventData(int id)
     {
         PointerEventData leftData;
         var created = GetPointerData(kMouseLeftId, out leftData, true);
