@@ -10,6 +10,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Bot") || other == Player.GetComponent<Collider>())
         {
+            Debug.Log(other.name + " is trying to open " + ControlledObject.name);
             ControlledObject.GetComponent<Animator>().SetBool(BoolName, true);
         }
     }
@@ -18,6 +19,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Bot") || other == Player.GetComponent<Collider>())
         {
+            Debug.Log(other.name + " is trying to close " + ControlledObject.name);
             ControlledObject.GetComponent<Animator>().SetBool(BoolName, false);
         }
     }
