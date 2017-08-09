@@ -18721,7 +18721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: Hatsune Miku
+  nameText: Beefsteak
   nameColor: {r: 0.45882356, g: 0.73333335, b: 0.7725491, a: 1}
   soundEffect: {fileID: 0}
   portraits: []
@@ -77437,7 +77437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 1
-  storyText: Miku.
+  storyText: Beefsteak.
   description: 
   character: {fileID: 408759185}
   portrait: {fileID: 0}
@@ -77617,7 +77617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 1
-  storyText: Acknowledged, Miku. My assigned name is ABE.
+  storyText: Acknowledged, Beefsteak. My assigned name is ADAM.
   description: 
   character: {fileID: 1141344992}
   portrait: {fileID: 0}
@@ -77642,7 +77642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 1
-  storyText: Just call me Miku. ...Do you have a name?
+  storyText: Just call me Beefsteak. ...Do you have a name?
   description: 
   character: {fileID: 408759185}
   portrait: {fileID: 0}
@@ -78044,7 +78044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 124
   indentLevel: 0
-  storyText: This of it as a gauntlet of sorts, Lieutenant. It shall test your mettle,
+  storyText: Think of it as a gauntlet of sorts, Lieutenant. It shall test your mettle,
     your skills of memorizing, your-
   description: 
   character: {fileID: 1141344992}
@@ -78814,7 +78814,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "What I mean is, is that the team responsible for building this vessel
     did at one point decide to streamline the activation process in order to save
-    time and effort in both building and use, also making their job more proportionate
+    time and effort in both building and use.{wc} It also made their job more proportionate
     in regards to their paychecks.\_"
   description: 
   character: {fileID: 1141344992}
