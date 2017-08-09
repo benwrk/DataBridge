@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+///     Controller for door triggers.
+/// </summary>
 public class DoorTrigger : MonoBehaviour
 {
     public string BoolName;
@@ -13,6 +16,11 @@ public class DoorTrigger : MonoBehaviour
             Debug.Log(other.name + " is trying to open " + ControlledObject.name);
             ControlledObject.GetComponent<Animator>().SetBool(BoolName, true);
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        OnTriggerEnter(other);
     }
 
     private void OnTriggerExit(Collider other)
