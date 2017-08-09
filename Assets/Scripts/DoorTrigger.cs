@@ -5,8 +5,19 @@
 /// </summary>
 public class DoorTrigger : MonoBehaviour
 {
+    /// <summary>
+    ///     The name of the boolean parameter that lies within the ControlledObject's Animator. (Unity Initialized)
+    /// </summary>
     public string BoolName;
+
+    /// <summary>
+    ///     The object reference of the door that is being controlled by this controller. (Unity Initialized)
+    /// </summary>
     public GameObject ControlledObject;
+
+    /// <summary>
+    ///     The player object, used to allow players to open doors. (Unity Initialized)
+    /// </summary>
     public GameObject Player;
     
     private void OnTriggerEnter(Collider other)
