@@ -2,21 +2,21 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-///     A custom input module for the EventSystem that enables the user to interact with the in-game Unity UI objects with the crosshair.
+///     <para>
+///         A custom input module for the EventSystem that enables the user to interact with the in-game Unity UI objects
+///         with the crosshair.
+///     </para>
 ///     Refer to https://forum.unity3d.com/threads/fake-mouse-position-in-4-6-ui-answered.283748/ for more information.
 /// </summary>
 public class FpsUiAwareInputModule : StandaloneInputModule
 {
+    private readonly MouseState _mouseState = new MouseState();
     private Vector2 _cursorPosition;
 
     public override void UpdateModule()
     {
-        var bvs = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-        //_cursorPosition = Input.mousePosition - new Vector3(0f, 20f, 0f);
         _cursorPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        //_cursorPosition = Input.mousePosition;
-        Debug.Log("MDS: " +_cursorPosition + " | MPS: " + Input.mousePosition + " | BVS: " + bvs);
-
+        // Debug.Log("MDS: " +_cursorPosition + " | MPS: " + Input.mousePosition);
     }
 
     private new bool GetPointerData(int id, out PointerEventData data, bool create)
@@ -39,8 +39,6 @@ public class FpsUiAwareInputModule : StandaloneInputModule
         to.scrollDelta = from.scrollDelta;
         to.pointerCurrentRaycast = from.pointerPressRaycast;
     }
-
-    private readonly MouseState _mouseState = new MouseState();
 
     protected override MouseState GetMousePointerEventData(int id)
     {
@@ -72,17 +70,17 @@ public class FpsUiAwareInputModule : StandaloneInputModule
         CopyFromTo(leftData, middleData);
         middleData.button = PointerEventData.InputButton.Middle;
 
-        //For controllers
-        //var selectState = PointerEventData.FramePressState.NotChanged;
-        //if (Input.GetKeyDown(KeyCode.Joystick1Button0))
-        //{
-        //    selectState = PointerEventData.FramePressState.Pressed;
-        //}
-        //else if (Input.GetKeyUp(KeyCode.Joystick1Button0))
-        //{
-        //    selectState = PointerEventData.FramePressState.Released;
-        //}
-        //_mouseState.SetButtonState(PointerEventData.InputButton.Left, selectState, leftData);
+        // For controllers
+        // var selectState = PointerEventData.FramePressState.NotChanged;
+        // if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        // {
+        //     selectState = PointerEventData.FramePressState.Pressed;
+        // }
+        // else if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+        // {
+        //     selectState = PointerEventData.FramePressState.Released;
+        // }
+        // _mouseState.SetButtonState(PointerEventData.InputButton.Left, selectState, leftData);
 
         _mouseState.SetButtonState(PointerEventData.InputButton.Left, StateForMouseButton(0), leftData);
         _mouseState.SetButtonState(PointerEventData.InputButton.Right, StateForMouseButton(1), rightData);

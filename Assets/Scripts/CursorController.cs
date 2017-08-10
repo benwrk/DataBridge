@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+///     A controller for mouse cursor, designed to be attached to the EventSystem component.
+/// </summary>
 public class CursorController : MonoBehaviour
 {
-    // Use this for initialization
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
