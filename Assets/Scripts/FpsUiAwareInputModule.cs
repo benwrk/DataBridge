@@ -11,7 +11,12 @@ public class FpsUiAwareInputModule : StandaloneInputModule
 
     public override void UpdateModule()
     {
-        _cursorPosition = Input.mousePosition;
+        var bvs = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        //_cursorPosition = Input.mousePosition - new Vector3(0f, 20f, 0f);
+        _cursorPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        //_cursorPosition = Input.mousePosition;
+        Debug.Log("MDS: " +_cursorPosition + " | MPS: " + Input.mousePosition + " | BVS: " + bvs);
+
     }
 
     private new bool GetPointerData(int id, out PointerEventData data, bool create)
