@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fungus;
+using UnityEngine;
 
 namespace BotCutSceneMovement.BotScript
 {
@@ -6,11 +7,15 @@ namespace BotCutSceneMovement.BotScript
         
         bool EnteredTheRoom;
         public GameObject Player;
+        public Flowchart Flowchart;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other == Player.GetComponent<Collider>())
-                EnteredTheRoom= true;
+            {
+                EnteredTheRoom = true;
+                Flowchart.SendFungusMessage("Scene 2 Start");
+            }
         }
 
    
