@@ -22,7 +22,7 @@ namespace BotCutSceneMovement.BotScript
         private void ToggleFreezeOfPlayer(bool freeze)
         {
             Controller.GetComponent<PlayerController>().ToggleFreeze();
-            _animatorFreeze =Controller.GetComponent<PlayerController>().IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
+            //_animatorFreeze =Controller.GetComponent<PlayerController>().GameStates.IsFrozen; //TODO remove this if not conflicting  with the notmal toggle of the player in´´during the gameplay
         }
 
         private void FixedUpdate()

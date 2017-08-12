@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _initialLocation;
     private Vector3 _initialRotation;
     public RigidbodyFirstPersonController Controller;
-    public bool IsFrozen;
+    //public bool IsFrozen;
 
     // Update is called once per frame
     private void Update()
@@ -22,10 +22,10 @@ public class PlayerController : MonoBehaviour
         if (_grabbedObject != null)
             CenterLockGrabbedObject();
 
-        if (IsFrozen)
+        if (GameStates.IsFrozen)
             DisableMovements();
         else
-            EnableMovements();
+           EnableMovements();
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y,
             Camera.main.transform.eulerAngles.z);
 
-        IsFrozen = true;
+        GameStates.IsFrozen = true;
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         _grabbedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
         Controller.lookRotationEnabled = true;
-        IsFrozen = false;
+        GameStates.IsFrozen = false;
 
         GameStates.IsGrabbing = false;
 
@@ -133,8 +133,6 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleFreeze()
     {
-        IsFrozen = !IsFrozen;
+        GameStates.IsFrozen = !GameStates.IsFrozen;
     }
-
-   
 }
