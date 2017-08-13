@@ -2,4 +2,5 @@
 {
     public static bool FloatingObjectsEnabled;
     public static bool IsGrabbing;
+    public static bool IsFrozen;
 }
