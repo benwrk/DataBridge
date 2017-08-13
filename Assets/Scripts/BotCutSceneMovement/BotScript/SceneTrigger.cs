@@ -14,7 +14,8 @@ namespace BotCutSceneMovement.BotScript
             if (other == Player.GetComponent<Collider>())
             {
                 EnteredTheRoom = true;
-                Flowchart.SendFungusMessage("Scene 2 Start");
+                Debug.Log(gameObject.name);
+                Flowchart.SendFungusMessage(gameObject.name);
             }
         }
 
