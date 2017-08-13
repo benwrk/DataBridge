@@ -13,6 +13,11 @@ namespace Problems
         private int _questionOnDisplayIndex;
         private IList<ChoiceQuestion> _randomizedChoiceQuestions;
 
+        public ChoiceQuestion QuestionOnDisplay
+        {
+            get { return _randomizedChoiceQuestions[_questionOnDisplayIndex]; }
+        }
+
         /// <summary>
         ///     List of UnityEngine.UI.Text, for choices to be displayed in. (Unity Initialized)
         /// </summary>
