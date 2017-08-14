@@ -53,7 +53,7 @@ namespace Clue_Related
             Controller.lookRotationEnabled = false;
             Camera.main.transform.eulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y,
                 Camera.main.transform.eulerAngles.z);
-            ClueObjectToView.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 0.5f));
+            ClueObjectToView.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, 1f));
             ClueObjectToView.GetComponent<Transform>().LookAt(MainCam.GetComponent<Transform>());
             GameStates.IsFrozen = true;
             _pickedClue = true;
