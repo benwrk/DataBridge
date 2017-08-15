@@ -18,14 +18,14 @@
 
         public static class Clues
         {
-            public const string ConfigFilePath = "Assets/XmlConfigs/clues.xml";
+            public const string ConfigFilePath = "XmlConfigs/clues.xml";
             public const string LevelTagName = "Level";
             public const string TextAttributeName = "text";
         }
 
         public static class Problems
         {
-            public const string ConfigFilePath = "Assets/XmlConfigs/problems.xml";
+            public const string ConfigFilePath = "XmlConfigs/problems.xml";
             public const string ContainsRuleTagName = "ContainsRule";
             public const string ChoiceProblemTagName = "ChoiceProblem";
             public const string InputProblemTagName = "InputProblem";
