@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBridge", "Assembly-CSharp-firstpass.csproj", "{B4BFB10A-F18A-81EB-E3AD-145E44E417F9}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBridge.Plugins", "DataBridge.Plugins.csproj", "{8ECC3DFE-E939-8418-70BD-1908A637E443}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBridge", "Assembly-CSharp.csproj", "{4175D730-CCF2-BF14-323F-F9CEEA595589}"
 EndProject
