@@ -7,6 +7,7 @@ namespace Puzzle
         private void OnTriggerEnter(Collider other)
         {
             GameStates.PuzzleTrigger = true;
+            GameStates.FloatingObjectsEnabled = false;
         }
     }
 }
