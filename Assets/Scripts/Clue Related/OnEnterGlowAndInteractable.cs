@@ -12,6 +12,7 @@ namespace Clue_Related
         public GameObject ClueObjectToView;
         private Vector3 _initialLocation;
         private Vector3 _initialRotation;
+        public GameObject LookAtGameObject;
         public RigidbodyFirstPersonController Controller;
         public GameObject MainCam;
         private bool _pickedClue;
@@ -24,7 +25,11 @@ namespace Clue_Related
                 if (Input.GetKeyUp(KeyCode.U))
                 {
                     if (_pickedClue == false)
+                    {
+                        LookAtCorrectDirection();
                         GrabObject();
+                        
+                    }
                     else
                         DropObject();
                 }
@@ -59,6 +64,12 @@ namespace Clue_Related
             _pickedClue = true;
         }
 
+        void LookAtCorrectDirection()
+        {
+            if(LookAtGameObject != null)
+            Controller.GetComponent<Transform>().LookAt(LookAtGameObject.GetComponent<Transform>());
+        }
+
         private void DropObject()
         {
             if (_pickedClue == false)
@@ -85,7 +96,7 @@ namespace Clue_Related
 
             Controller.CameraFoVChange(90, 30, 2);
             
-            ClueObjectToView.transform.Rotate(new Vector3(0, -Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) *Time.deltaTime * Constants.ZeroGravityRotationSpeed);
+            ClueObjectToView.transform.Rotate(new Vector3(0, -Input.GetAxis("Mouse X"), 0) *Time.deltaTime * Constants.ZeroGravityRotationSpeed);
         }
 
         private void DisableMovements()
