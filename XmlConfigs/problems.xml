@@ -3,7 +3,7 @@
 <ProblemsConfig>
   <Level name="level-1">
     <ChoiceProblem id="P1" text="Enter the passcode for the door!">
-      <ChoiceQuestion id="P1Q1" text="This is the first question!">
+      <ChoiceQuestion id="P1Q1" text="Peer-reviewed journal articles are:">
         <Choice text="Articles in which other scientists and academics in the field have read and accepted it for publication" correct="true" />
         <Choice text="Articles that has not been officially published" />
         <Choice text="Articles that are positively rated by book reviewers" />
@@ -54,7 +54,7 @@ Electronics Letters, 53(16), 1156 - 1158. doi: 10.1049/el.2017.1006">
       </InputQuestion>
       <InputQuestion text="Find the shelf location of the book in Kajaani University of Applied Sciences library called: &quot;Gaming in academic libraries: collections, marketing, and information literacy&quot;." placeholder="eg. 5 SEM" rule-validation="all">
         <ContainsRule phrase="0" />
-        <ContainsRuke phrase="GAM" />
+        <ContainsRule phrase="GAM" />
       </InputQuestion>
     </InputProblem>
   </Level>
