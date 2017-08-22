@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Fungus;
+﻿using Fungus;
 using UnityEngine;
 
 public class FungusCall : StateMachineBehaviour
 {
     public string MessageToBeSent;
     public string FlowchartName;
-    private Flowchart Flowchart;
+    private Flowchart _flowchart;
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-	    Flowchart = GameObject.Find(FlowchartName).GetComponent<Flowchart>();
-	    Flowchart.SendFungusMessage(MessageToBeSent);
+	    _flowchart = GameObject.Find(FlowchartName).GetComponent<Flowchart>();
+	    _flowchart.SendFungusMessage(MessageToBeSent);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
