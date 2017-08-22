@@ -2,64 +2,63 @@
 
 <ProblemsConfig>
   <Level name="level-1">
-    <ChoiceProblem id="P1" text="This is the first problem!">
+    <ChoiceProblem id="P1" text="Enter the passcode for the door!">
       <ChoiceQuestion id="P1Q1" text="This is the first question!">
-        <Choice text="1. This is the correct answer!" correct="true" />
-        <Choice text="2. This is the wrong answer!" />
-        <Choice text="3. This is also wrong!" />
-        <Choice text="4. All above is correct? No! lol" />
+        <Choice text="Articles in which other scientists and academics in the field have read and accepted it for publication" correct="true" />
+        <Choice text="Articles that has not been officially published" />
+        <Choice text="Articles that are positively rated by book reviewers" />
+        <Choice text="None of the above" />
       </ChoiceQuestion>
-      <ChoiceQuestion id="P1Q2" text="This is the second question!">
-        <Choice text="1. This is the correct answer!" correct="true" />
-        <Choice text="2. This is the wrong answer!" />
-        <Choice text="3. This is also wrong!" />
-        <Choice text="4. All above is correct? No! lol" />
+      <ChoiceQuestion id="P1Q2" text="Using Google to search is a good starting point, but why might one of the libray's database be better">
+        <Choice text="All of these are correct" correct="true" />
+        <Choice text="The information they contain is organized to make searchin more efficient" />
+        <Choice text="They are part of the 'invisible web' that search engines cannot access" />
+        <Choice text="Databases contain full-text articles most of which are available throught the library's subscription" />
       </ChoiceQuestion>
-      <ChoiceQuestion id="P1Q3" text="This is the third question!">
-        <Choice text="1. This is the correct answer!" correct="true" />
-        <Choice text="2. This is the wrong answer!" />
-        <Choice text="3. This is also wrong!" />
-        <Choice text="4. All above is correct? No! lol" />
+      <ChoiceQuestion id="P1Q3" text="Choose the example of boolean logic that would likely yield the greates number of results in a database search">
+        <Choice text="Data security and &quot;cloud computing&quot;" />
+        <Choice text="Data security or &quot;cloud computing&quot;" correct="true" />
+        <Choice text="Data security not &quot;cloud computing&quot;" />
+        <Choice text="Data security and not &quot;cloud computing&quot;" />
       </ChoiceQuestion>
     </ChoiceProblem>
-    <InputProblem text="This is the second problem, with text inputs!">
-      <InputQuestion text="Input yes without no!" placeholder="Sample answer: Yes, No!" rule-validation="any">
-        <MatchesRule phrase="Yes" />
-        <MatchesRule phrase="Yeah" />
+    <InputProblem text="Find the DOI number of the article from the IEEE database:">
+      <InputQuestion text="Astrological prediction for profession using classification techniques of artificial intelligence" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+        <MatchesRule phrase="10.1109/CCAA.2015.7148378" />
       </InputQuestion>
-      <InputQuestion text="Input yes without no!" placeholder="Sample answer: Yes, No!" rule-validation="all">
-        <ContainsRule phrase="Yes" />
-        <WithoutRule phrase="No" />
+      <InputQuestion text="Nuclear Thermal Propulsion (NTP): A proven growth technology for human NEO/Mars exploration missions" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+        <MatchesRule phrase="10.1109/AERO.2012.6187301" />
       </InputQuestion>
     </InputProblem>
     <InputProblem text="Find the publication &quot;Thesis title: Electrical accident risks in electrical work&quot;, authored by Tulonen, Tuuli on Finna.fi">
-      <InputQuestion text="What is the publication year?" placeholder="1983" rule-validation="any">
+      <InputQuestion text="What is the publication year?" placeholder="eg. 1983" rule-validation="any">
         <MatchesRule phrase="2010" />
       </InputQuestion>
     </InputProblem>
     <InputProblem text="Stilwell, R. E. &amp; Demidovich N. 2017. Performance of maximum-ratio combining-enabled heterodyne detection for free-space optical systems under mixture-Gamma fading channels and pointing errors.
 Electronics Letters, 53(16), 1156 - 1158. doi: 10.1049/el.2017.1006">
-      <InputQuestion text="What is permanent link in the reference?" placeholder="10.0000/el.2015.1000" rule-validation="any">
+      <InputQuestion text="What is permanent link in the reference?" placeholder="eg. 10.0000/el.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1049/el.2017.1006" />
       </InputQuestion>
-      <InputQuestion text="What is the volume in the reference?" placeholder="22" rule-validation="all">
+      <InputQuestion text="What is the volume in the reference?" placeholder="eg. 22" rule-validation="all">
         <ContainsRule phrase="53" />
       </InputQuestion>
-      <InputQuestion text="What is the name of the publication in the reference?" placeholder="Data Press" rule-validation="any">
+      <InputQuestion text="What is the name of the publication in the reference?" placeholder="eg. Data Press" rule-validation="any">
         <MatchesRule phrase="Electronics Letters" />
       </InputQuestion>
     </InputProblem>
     <InputProblem text="Answer the following questions.">
-      <InputQuestion text="Find the Kajaani University of Applied Sciences library (Ketunpolku 3, Kajaani) from Google Maps and enter the coordinates of that location." placeholder="61.231516, 22.168342" rule-validation="all">
+      <InputQuestion text="Find the Kajaani University of Applied Sciences library (Ketunpolku 3, Kajaani) from Google Maps and enter the coordinates of that location." placeholder="eg. 61.231516, 22.168342" rule-validation="all">
         <ContainsRule phrase="64.21" />
         <ContainsRule phrase="27.71" />
       </InputQuestion>
-      <InputQuestion text="Find the shelf location of the book in Kajaani University of Applied Sciences library called: &quot;Gaming in academic libraries: collections, marketing, and information literacy&quot;." placeholder="5 SEM" rule-validation="all">
+      <InputQuestion text="Find the shelf location of the book in Kajaani University of Applied Sciences library called: &quot;Gaming in academic libraries: collections, marketing, and information literacy&quot;." placeholder="eg. 5 SEM" rule-validation="all">
         <ContainsRule phrase="0" />
         <ContainsRuke phrase="GAM" />
       </InputQuestion>
     </InputProblem>
   </Level>
-  <Level name="level-2"> 
+  <Level name="level-2">
+    <!-- Not implemented -->
   </Level>
 </ProblemsConfig>
