@@ -604,7 +604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 1815, y: -9458}
+  m_AnchoredPosition: {x: 1815, y: -9458.001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422852575
@@ -1073,7 +1073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 574.99994, y: 9108}
+  m_AnchoredPosition: {x: 574.99994, y: 9107.999}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685152991
@@ -1839,7 +1839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 451, y: -11157}
+  m_AnchoredPosition: {x: 451, y: -11157.001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148542887
@@ -1911,7 +1911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: -369, y: 9026}
+  m_AnchoredPosition: {x: -369, y: 9025.999}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1153495352
@@ -2120,7 +2120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 441.00003, y: 5842.9995}
+  m_AnchoredPosition: {x: 441, y: 5842.9995}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1411615098
@@ -2168,6 +2168,7 @@ GameObject:
   - component: {fileID: 1573565098}
   - component: {fileID: 1573565100}
   - component: {fileID: 1573565099}
+  - component: {fileID: 1573565101}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -2226,6 +2227,58 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573565097}
+--- !u!114 &1573565101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1573565097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9117647, g: 0.9117647, b: 0.113970585, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1573565099}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 353366273}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Scene02
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1639000750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,7 +2385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 186.00002, y: -8697}
+  m_AnchoredPosition: {x: 186.00002, y: -8697.001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676401581
@@ -2404,7 +2457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: -245, y: -2984.9998}
+  m_AnchoredPosition: {x: -244.99998, y: -2984.9998}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683964147
@@ -2582,7 +2635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 86, y: -1387.0001}
+  m_AnchoredPosition: {x: 85.99999, y: -1387.0001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1801228227
@@ -2654,7 +2707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: -1087, y: -11670}
+  m_AnchoredPosition: {x: -1087, y: -11670.001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1804673670
@@ -2942,7 +2995,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: -387, y: -10245}
+  m_AnchoredPosition: {x: -387, y: -10245.001}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1885712187
@@ -3144,7 +3197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.000002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.71633756, y: 0.70344055}
-  m_AnchoredPosition: {x: 186.00002, y: 9762}
+  m_AnchoredPosition: {x: 186.00002, y: 9761.999}
   m_SizeDelta: {x: 78.00124, y: 79.93715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100118585

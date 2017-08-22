@@ -31,7 +31,7 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        OnTriggerEnter(other);
+        //OnTriggerEnter(other);
     }
 
     private void OnTriggerExit(Collider other)

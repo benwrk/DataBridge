@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: ada1c046968f66249a644e30be2e0594
+timeCreated: 1503327805
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Saira
+  fontNames:
+  - Saira
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 52115303fbb17d74ab8f7aacd32123e1, type: 3}
+  - {fileID: 12800000, guid: 7b239657c934c10419c7402872f23461, type: 3}
+  - {fileID: 12800000, guid: 9e90bbea823db28408c7a441d0c28d3c, type: 3}
+  - {fileID: 12800000, guid: 80edfe2bb4063b4429d45c71628c2c06, type: 3}
+  - {fileID: 12800000, guid: 4238423b362e6c24eb30484e843294d1, type: 3}
+  - {fileID: 12800000, guid: 56b2d36cfe4b4c84bab9f667ca5ba79c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
