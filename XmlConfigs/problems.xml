@@ -1,5 +1,15 @@
 <?xml version="1.0"?>
 
+<!--
+  Escaping needed for reserved characters
+  Common escape:
+    & = &amp;
+    < = &gt;
+    > = &lt;
+    " = &quot;
+    new line = &#xA;
+-->
+
 <ProblemsConfig>
   <Level name="level-1">
     <ChoiceProblem id="P1" text="Enter the passcode to unlock the door!">
@@ -22,11 +32,11 @@
         <Choice text="Data security and not &quot;cloud computing&quot;" />
       </ChoiceQuestion>
     </ChoiceProblem>
-    <InputProblem text="Find the DOI number of the article from the IEEE database:">
-      <InputQuestion text="Astrological prediction for profession using classification techniques of artificial intelligence" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+    <InputProblem text="Find the DOI number of the article from the IEEE database">
+      <InputQuestion text="Article Title: Astrological prediction for profession using classification techniques of artificial intelligence&#xA;Publication Title: International Conference on Computing, Communication &amp; Automation&#xA;Authors: Neelam Chaplot; Praveen Dhyani; O. P. Rishi" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1109/CCAA.2015.7148378" />
       </InputQuestion>
-      <InputQuestion text="Nuclear Thermal Propulsion (NTP): A proven growth technology for human NEO/Mars exploration missions" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+      <InputQuestion text="Article Title: Nuclear Thermal Propulsion (NTP): A proven growth technology for human NEO/Mars exploration missions&#xA;Publication Title: 2012 IEEE Aerospace Conference&#xA;Authors: Stanley K. Borowski; David R. McCurdy; Thomas W. Packard" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1109/AERO.2012.6187301" />
       </InputQuestion>
     </InputProblem>
