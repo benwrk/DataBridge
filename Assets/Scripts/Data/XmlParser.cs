@@ -23,6 +23,7 @@ namespace Data
             return selectedLevel.ChildNodes.Cast<XmlElement>()
                 .Select(clueElement => new Clue
                 {
+                    ForId = clueElement.GetAttribute(Constants.XmlParser.Clues.ForIdAttributeName),
                     Text = clueElement.GetAttribute(Constants.XmlParser.Clues.TextAttributeName)
                 }).ToList();
         }
@@ -43,13 +44,14 @@ namespace Data
             foreach (XmlElement problemElement in selectedLevel.ChildNodes)
             {
                 var problemText = problemElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName);
-                var problemId = problemElement.GetAttribute(Constants.XmlParser.Problems.IdAttributeTagName)
+                var problemId = problemElement.GetAttribute(Constants.XmlParser.Problems.IdAttributeName);
 
                 switch (problemElement.Name)
                 {
                     case Constants.XmlParser.Problems.ChoiceProblemTagName:
                         var choiceProblem = new ChoiceProblem
                         {
+                            Id = problemId,
                             Text = problemText,
                             Questions = new List<ChoiceQuestion>()
                         };
@@ -60,6 +62,7 @@ namespace Data
                         {
                             var choiceQuestion = new ChoiceQuestion
                             {
+                                Id = choiceQuestionElement.GetAttribute(Constants.XmlParser.Problems.IdAttributeName),
                                 Text = choiceQuestionElement.GetAttribute(
                                     Constants.XmlParser.Problems.TextAttributeName),
                                 Choices = new List<Choice>()
@@ -84,6 +87,7 @@ namespace Data
                     case Constants.XmlParser.Problems.InputProblemTagName:
                         var inputProblem = new InputProblem
                         {
+                            Id = problemId,
                             Text = problemText,
                             Questions = new List<InputQuestion>()
                         };
@@ -94,6 +98,7 @@ namespace Data
                         {
                             var inputQuestion = new InputQuestion
                             {
+                                Id = inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.IdAttributeName),
                                 Text =
                                     inputQuestionElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName),
                                 Placeholder =

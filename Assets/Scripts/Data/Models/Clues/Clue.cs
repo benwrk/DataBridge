@@ -8,8 +8,8 @@
         public string Text;
 
         /// <summary>
-        ///     The item that the clue is for.
+        ///     The ID of the item that the clue is for.
         /// </summary>
-        public string ForItem;
+        public string ForId;
     }
 }
