@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBridge.Plugins", "DataBridge.Plugins.csproj", "{8ECC3DFE-E939-8418-70BD-1908A637E443}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBridge", "DataBridge.csproj", "{3FFFE531-FFB8-BF64-6738-1EC3FA78C7C0}"

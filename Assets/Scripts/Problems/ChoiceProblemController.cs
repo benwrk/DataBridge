@@ -2,6 +2,7 @@
 using Data.Models.Problems;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 namespace Problems
 {
@@ -10,6 +11,7 @@ namespace Problems
     /// </summary>
     public class ChoiceProblemController : MonoBehaviour
     {
+        public Flowchart Flowchart; //Recommend using ProblemHandler by default
         private int _questionOnDisplayIndex;
         private IList<ChoiceQuestion> _randomizedChoiceQuestions;
 
@@ -18,6 +20,11 @@ namespace Problems
             get { return _randomizedChoiceQuestions[_questionOnDisplayIndex]; }
         }
 
+        public void SendQuestionIDToFungus()
+        {
+            Debug.Log("Message to Fungus: " + QuestionOnDisplay.Id);
+            Flowchart.SendFungusMessage(QuestionOnDisplay.Id);
+        }
         /// <summary>
         ///     List of UnityEngine.UI.Text, for choices to be displayed in. (Unity Initialized)
         /// </summary>
