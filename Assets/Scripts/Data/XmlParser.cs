@@ -43,6 +43,7 @@ namespace Data
             foreach (XmlElement problemElement in selectedLevel.ChildNodes)
             {
                 var problemText = problemElement.GetAttribute(Constants.XmlParser.Problems.TextAttributeName);
+                var problemId = problemElement.GetAttribute(Constants.XmlParser.Problems.IdAttributeTagName)
 
                 switch (problemElement.Name)
                 {

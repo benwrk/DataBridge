@@ -15,6 +15,7 @@
     public static class XmlParser
     {
         public const string XmlSchemaExceptionMessage = "Invalid XML Schema!";
+        public const string IdAttributeName = "id";
 
         public static class Clues
         {
