@@ -2,7 +2,7 @@
 
 <ProblemsConfig>
   <Level name="level-1">
-    <ChoiceProblem id="P1" text="Enter the passcode for the door!">
+    <ChoiceProblem id="P1" text="Enter the passcode to unlock the door!">
       <ChoiceQuestion id="P1Q1" text="Peer-reviewed journal articles are:">
         <Choice text="Articles in which other scientists and academics in the field have read and accepted it for publication" correct="true" />
         <Choice text="Articles that has not been officially published" />
