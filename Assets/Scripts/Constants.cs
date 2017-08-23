@@ -19,6 +19,7 @@
         public static class Clues
         {
             public const string ConfigFilePath = "XmlConfigs/clues.xml";
+            public const string ForIdAttributeName = "for-id";
             public const string LevelTagName = "Level";
             public const string TextAttributeName = "text";
         }
@@ -28,6 +29,7 @@
             public const string ConfigFilePath = "XmlConfigs/problems.xml";
             public const string ContainsRuleTagName = "ContainsRule";
             public const string ChoiceProblemTagName = "ChoiceProblem";
+            public const string IdAttributeName = "id";
             public const string InputProblemTagName = "InputProblem";
             public const string IsCorrectAttributeName = "correct";
             public const string LevelTagName = "Level";
