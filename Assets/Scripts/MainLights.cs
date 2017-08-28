@@ -1,20 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainLights : MonoBehaviour
 {
-    
-
     public void IncreaseRange()
     {
+        var lightObjects = GameObject.FindGameObjectsWithTag("Light");
 
-        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
-
-        foreach (GameObject light in lights)
+        foreach (var lightObject in lightObjects)
         {
-            light.GetComponent<Animator>().Play("Lights on", 0, 0);
+            lightObject.GetComponent<Animator>().Play("Lights on", 0, 0);
         }
     }
-
 }

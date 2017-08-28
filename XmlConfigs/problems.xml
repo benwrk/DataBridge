@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 
+<!--
+  Escaping needed for reserved characters
+  Common escape:
+    & = &amp;
+    < = &gt;
+    > = &lt;
+    " = &quot;
+    new line = &#xA;
+-->
+
 <ProblemsConfig>
   <Level name="level-1">
-    <ChoiceProblem id="P1" text="Enter the passcode for the door!">
+    <ChoiceProblem id="P1" text="Enter the passcode to unlock the door!">
       <ChoiceQuestion id="P1Q1" text="Peer-reviewed journal articles are:">
         <Choice text="Articles in which other scientists and academics in the field have read and accepted it for publication" correct="true" />
         <Choice text="Articles that has not been officially published" />
@@ -22,39 +32,44 @@
         <Choice text="Data security and not &quot;cloud computing&quot;" />
       </ChoiceQuestion>
     </ChoiceProblem>
-    <InputProblem text="Find the DOI number of the article from the IEEE database:">
-      <InputQuestion text="Astrological prediction for profession using classification techniques of artificial intelligence" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+    <InputProblem id="P2" text="Find the DOI number of the article from the IEEE database">
+      <InputQuestion id="P2Q1" text="Article Title: Astrological prediction for profession using classification techniques of artificial intelligence&#xA;Publication Title: International Conference on Computing, Communication &amp; Automation&#xA;Authors: Neelam Chaplot; Praveen Dhyani; O. P. Rishi" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1109/CCAA.2015.7148378" />
       </InputQuestion>
-      <InputQuestion text="Nuclear Thermal Propulsion (NTP): A proven growth technology for human NEO/Mars exploration missions" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
+      <InputQuestion id="P2Q2" text="Article Title: Nuclear Thermal Propulsion (NTP): A proven growth technology for human NEO/Mars exploration missions&#xA;Publication Title: 2012 IEEE Aerospace Conference&#xA;Authors: Stanley K. Borowski; David R. McCurdy; Thomas W. Packard" placeholder="eg. 10.1099/AE.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1109/AERO.2012.6187301" />
       </InputQuestion>
     </InputProblem>
-    <InputProblem text="Find the publication &quot;Thesis title: Electrical accident risks in electrical work&quot;, authored by Tulonen, Tuuli on Finna.fi">
-      <InputQuestion text="What is the publication year?" placeholder="eg. 1983" rule-validation="any">
+    <InputProblem id="P3" text="Find the publication &quot;Thesis title: Electrical accident risks in electrical work&quot;, authored by Tulonen, Tuuli on Finna.fi">
+      <InputQuestion id="P3Q1" text="What is the publication year?" placeholder="eg. 1983" rule-validation="any">
         <MatchesRule phrase="2010" />
       </InputQuestion>
     </InputProblem>
-    <InputProblem text="Stilwell, R. E. &amp; Demidovich N. 2017. Performance of maximum-ratio combining-enabled heterodyne detection for free-space optical systems under mixture-Gamma fading channels and pointing errors.
+    <InputProblem id="P4" text="Stilwell, R. E. &amp; Demidovich N. 2017. Performance of maximum-ratio combining-enabled heterodyne detection for free-space optical systems under mixture-Gamma fading channels and pointing errors.
 Electronics Letters, 53(16), 1156 - 1158. doi: 10.1049/el.2017.1006">
-      <InputQuestion text="What is permanent link in the reference?" placeholder="eg. 10.0000/el.2015.1000" rule-validation="any">
+      <InputQuestion id="P4Q1" text="What is permanent link in the reference?" placeholder="eg. 10.0000/el.2015.1000" rule-validation="any">
         <MatchesRule phrase="10.1049/el.2017.1006" />
       </InputQuestion>
-      <InputQuestion text="What is the volume in the reference?" placeholder="eg. 22" rule-validation="all">
+      <InputQuestion id="P4Q2" text="What is the volume in the reference?" placeholder="eg. 22" rule-validation="all">
         <ContainsRule phrase="53" />
       </InputQuestion>
-      <InputQuestion text="What is the name of the publication in the reference?" placeholder="eg. Data Press" rule-validation="any">
+      <InputQuestion id="P4Q3" text="What is the name of the publication in the reference?" placeholder="eg. Data Press" rule-validation="any">
         <MatchesRule phrase="Electronics Letters" />
       </InputQuestion>
     </InputProblem>
-    <InputProblem text="Answer the following questions.">
-      <InputQuestion text="Find the Kajaani University of Applied Sciences library (Ketunpolku 3, Kajaani) from Google Maps and enter the coordinates of that location." placeholder="eg. 61.231516, 22.168342" rule-validation="all">
+    <InputProblem id="P5" text="Answer the following questions.">
+      <InputQuestion id="P5Q1" text="Find the Kajaani University of Applied Sciences library (Ketunpolku 3, Kajaani) from Google Maps and enter the coordinates of that location." placeholder="eg. 61.231516, 22.168342" rule-validation="all">
         <ContainsRule phrase="64.21" />
         <ContainsRule phrase="27.71" />
       </InputQuestion>
-      <InputQuestion text="Find the shelf location of the book in Kajaani University of Applied Sciences library called: &quot;Gaming in academic libraries: collections, marketing, and information literacy&quot;." placeholder="eg. 5 SEM" rule-validation="all">
+      <InputQuestion id="P5Q2" text="Find the shelf location of the book in Kajaani University of Applied Sciences library called: &quot;Gaming in academic libraries: collections, marketing, and information literacy&quot;." placeholder="eg. 5 SEM" rule-validation="all">
         <ContainsRule phrase="0" />
         <ContainsRule phrase="GAM" />
+      </InputQuestion>
+    </InputProblem>
+    <InputProblem id="P6" text="Good boy.">
+      <InputQuestion id="P6Q1" text="Who's the good boy?" placeholder="Eve" rule-validation="any">
+        <MatchesRule phrase="Adam" />
       </InputQuestion>
     </InputProblem>
   </Level>
