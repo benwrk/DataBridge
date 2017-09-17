@@ -29,7 +29,7 @@ public class InputHandler : MonoBehaviour {
 
     public /*List<string>*/ void PassStringToVerify()
     {
-        // TODO call verifier 
+        // TODO call verifier, also send verification data to fungus. Check ChoiceProblemController - SendQuestionID to Fungus for how to do it
         Debug.Log(_currentString[0] + _currentString[1]);
        // return _currentString;
     }
