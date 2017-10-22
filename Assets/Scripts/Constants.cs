@@ -18,7 +18,7 @@
 
         public static class Clues
         {
-            public const string ConfigFilePath = "XmlConfigs/clues.xml";
+            public const string ConfigFilePath = "http://tiedonhaunopas.devkamit.fi/game/clues.xml"; //"XmlConfigs/clues.xml"
             public const string ForIdAttributeName = "for-id";
             public const string LevelTagName = "Level";
             public const string TextAttributeName = "text";
@@ -26,7 +26,7 @@
 
         public static class Problems
         {
-            public const string ConfigFilePath = "XmlConfigs/problems.xml";
+            public const string ConfigFilePath = "http://tiedonhaunopas.devkamit.fi/game/problems.xml"; //XmlConfigs/problems.xml
             public const string ContainsRuleTagName = "ContainsRule";
             public const string ChoiceProblemTagName = "ChoiceProblem";
             public const string IdAttributeName = "id";
